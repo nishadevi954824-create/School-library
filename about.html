@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ABOUT - SCHOOL BOOKS LIBRARY</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #FFFF;
+            color: #172033;
+            overflow-x: hidden;
+        }
+
+        a,
+        button {
+            font-family: inherit;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+
+        /* =====================================================
+           NAVBAR
+        ===================================================== */
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 76px;
+
+            display: flex;
+            align-items: center;
+
+            padding: 0 28px;
+
+            background: linear-gradient(
+                135deg,
+                #ffffff 0%,
+                #f1f5f9 50%,
+                #e8eef5 100%
+            );
+
+            border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+
+            box-shadow:
+                0 4px 18px rgba(15, 23, 42, 0.12);
+
+            z-index: 1000;
+        }
+
+
+        /* =====================================================
+           LOGO
+        ===================================================== */
+
+        .nav-left {
+            width: 58px;
+            height: 58px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            flex-shrink: 0;
+        }
+
+        .nav-logo {
+            width: 51px;
+            height: 51px;
+
+            object-fit: contain;
+
+            display: block;
+
+            border-radius: 50%;
+        }
+
+
+        /* =====================================================
+           WEBSITE TITLE
+        ===================================================== */
+
+        .nav-title {
+            margin-left: 14px;
+
+            font-size: 22px;
+            font-weight: 800;
+
+            letter-spacing: 0.4px;
+
+            color: #172033;
+
+            white-space: nowrap;
+        }
+
+
+        /* =====================================================
+           DESKTOP NAVIGATION
+        ===================================================== */
+
+        .desktop-nav {
+            margin-left: auto;
+
+            display: flex;
+            align-items: center;
+
+            gap: 10px;
+
+            flex-shrink: 0;
+        }
+
+        .desktop-nav a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            min-height: 42px;
+
+            padding: 0 17px;
+
+            border-radius: 11px;
+
+            font-size: 15px;
+            font-weight: 700;
+
+            color: #263244;
+
+            transition:
+                transform 0.2s ease,
+                background 0.2s ease,
+                color 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .desktop-nav a:hover,
+        .desktop-nav a.active {
+            color: #ffffff;
+
+            background: linear-gradient(
+                135deg,
+                #2563eb,
+                #4f46e5
+            );
+
+            box-shadow:
+                0 5px 14px rgba(37, 99, 235, 0.22);
+        }
+
+        .desktop-nav a:active {
+            transform: scale(0.97);
+        }
+
+
+        /* =====================================================
+           HAMBURGER
+        ===================================================== */
+
+        .menu-button {
+            width: 48px;
+            height: 48px;
+
+            margin-left: 12px;
+
+            border: none;
+            border-radius: 12px;
+
+            background: transparent;
+
+            display: flex;
+
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            gap: 5px;
+
+            flex-shrink: 0;
+
+            transition:
+                background 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .menu-button span {
+            width: 28px;
+            height: 3px;
+
+            border-radius: 20px;
+
+            background: #263244;
+        }
+
+        .menu-button:hover {
+            background: rgba(37, 99, 235, 0.08);
+        }
+
+        .menu-button:active {
+            transform: scale(0.94);
+        }
+
+
+        /* =====================================================
+           SIDE MENU
+        ===================================================== */
+
+        .side-menu {
+            position: fixed;
+
+            top: 76px;
+            right: -330px;
+
+            width: 310px;
+            max-width: 88vw;
+
+            min-height: calc(100vh - 76px);
+
+            padding: 25px 20px;
+
+            background: #ffffff;
+
+            box-shadow:
+                -8px 0 30px rgba(15, 23, 42, 0.18);
+
+            z-index: 1002;
+
+            transition: right 0.28s ease;
+
+            overflow-y: auto;
+        }
+
+        .side-menu.open {
+            right: 0;
+        }
+
+        .side-menu-links {
+            display: flex;
+            flex-direction: column;
+
+            gap: 8px;
+        }
+
+        .side-menu-links a {
+            padding: 15px 17px;
+
+            border-radius: 12px;
+
+            font-size: 16px;
+            font-weight: 700;
+
+            color: #263244;
+
+            background: #f5f7fa;
+
+            transition:
+                background 0.2s ease,
+                color 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .side-menu-links a:hover {
+            color: #ffffff;
+
+            background: linear-gradient(
+                135deg,
+                #2563eb,
+                #4f46e5
+            );
+
+            transform: translateX(3px);
+        }
+
+        .side-menu-links a:active {
+            transform: scale(0.98);
+        }
+
+
+        /* =====================================================
+           MENU DIVIDER
+        ===================================================== */
+
+        .menu-divider {
+            height: 1px;
+
+            margin: 24px 0;
+
+            background: #dce2e8;
+        }
+
+
+        /* =====================================================
+           DARK MODE TOGGLE
+        ===================================================== */
+
+        .theme-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 12px 6px;
+        }
+
+        .theme-label {
+            font-size: 15px;
+            font-weight: 700;
+
+            color: #374151;
+        }
+
+        .theme-toggle {
+            width: 54px;
+            height: 30px;
+
+            padding: 3px;
+
+            border: none;
+            border-radius: 30px;
+
+            background: #cbd5e1;
+
+            transition: background 0.25s ease;
+        }
+
+        .toggle-circle {
+            display: block;
+
+            width: 24px;
+            height: 24px;
+
+            border-radius: 50%;
+
+            background: #ffffff;
+
+            box-shadow:
+                0 2px 5px rgba(0, 0, 0, 0.18);
+
+            transition: transform 0.25s ease;
+        }
+
+        .theme-toggle.active {
+            background: #2563eb;
+        }
+
+        .theme-toggle.active .toggle-circle {
+            transform: translateX(24px);
+        }
+
+
+        /* =====================================================
+           MENU OVERLAY
+        ===================================================== */
+
+        .menu-overlay {
+            position: fixed;
+
+            inset: 0;
+
+            background: rgba(15, 23, 42, 0.35);
+
+            opacity: 0;
+            visibility: hidden;
+
+            z-index: 1001;
+
+            transition:
+                opacity 0.25s ease,
+                visibility 0.25s ease;
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+
+        /* =====================================================
+           ABOUT PAGE
+        ===================================================== */
+
+        .about-page {
+            width: 100%;
+            min-height: 100vh;
+
+            padding-top: 76px;
+
+            display: block;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .site-footer {
+            width: 100%;
+
+            background: #FFFF;
+
+            padding: 46px 20px 28px;
+
+            border-top: 1px solid rgba(31, 41, 55, 0.12);
+        }
+
+        .footer-container {
+            width: 100%;
+            max-width: 900px;
+
+            margin: 0 auto;
+
+            text-align: center;
+        }
+
+        .footer-logo {
+            width: 86px;
+            height: 86px;
+
+            object-fit: contain;
+
+            display: block;
+
+            margin: 0 auto 20px;
+
+            background: transparent;
+        }
+
+        .footer-school-name {
+            max-width: 850px;
+
+            margin: 0 auto;
+
+            color: #000000;
+
+            font-size: 25px;
+            line-height: 1.45;
+
+            font-weight: 700;
+        }
+
+        .footer-description {
+            max-width: 760px;
+
+            margin: 16px auto 0;
+
+            color: #000000;
+
+            font-size: 16px;
+            line-height: 1.65;
+        }
+
+
+        /* =====================================================
+           FOOTER FEATURE BOXES
+        ===================================================== */
+
+        .footer-features {
+            width: 100%;
+            max-width: 720px;
+
+            margin: 32px auto 0;
+
+            display: flex;
+            flex-direction: column;
+
+            gap: 14px;
+        }
+
+        .footer-feature {
+            width: 100%;
+
+            min-height: 82px;
+
+            padding: 20px 22px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            background: #f8fafc;
+
+            border: 1px solid rgba(31, 41, 55, 0.10);
+
+            border-radius: 13px;
+
+            box-shadow:
+                0 3px 10px rgba(31, 41, 55, 0.05);
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease;
+        }
+
+        .footer-feature:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 7px 18px rgba(31, 41, 55, 0.09);
+
+            background: #ffffff;
+        }
+
+        .footer-feature:active {
+            transform: scale(0.99);
+        }
+
+        .footer-feature span {
+            color: #2c394d;
+
+            font-size: 16px;
+            line-height: 1.5;
+
+            font-weight: 600;
+        }
+
+
+        /* =====================================================
+           FOOTER BOTTOM
+        ===================================================== */
+
+        .footer-bottom {
+            width: 100%;
+
+            margin-top: 38px;
+
+            padding-top: 21px;
+
+            border-top: 1px solid rgba(31, 41, 55, 0.15);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            flex-direction: column;
+
+            gap: 9px;
+
+            text-align: center;
+        }
+
+        .copyright {
+            color: #000000;
+
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .developer {
+
+            color: #26364d;
+
+            font-size: 15px;
+
+            font-weight: 500;
+        
+        }
+
+
+        /* =====================================================
+           DOWNLOADED PDF MESSAGE
+        ===================================================== */
+
+        .sbl-message {
+            position: fixed;
+
+            top: 94px;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            width: min(520px, calc(100% - 32px));
+
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 14px 15px;
+
+            border-radius: 13px;
+
+            background: #ffffff;
+
+            color: #172033;
+
+            border: 1px solid rgba(31, 41, 55, 0.12);
+
+            box-shadow:
+                0 10px 28px rgba(15, 23, 42, 0.18);
+
+            z-index: 11000;
+
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .sbl-message-icon {
+            width: 28px;
+            height: 28px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            flex: 0 0 28px;
+
+            border-radius: 50%;
+
+            background: #e8f0ff;
+
+            color: #2563eb;
+
+            font-weight: 900;
+        }
+
+        .sbl-message-text {
+            flex: 1;
+        }
+
+        .sbl-message-close {
+            width: 30px;
+            height: 30px;
+
+            border: 0;
+
+            border-radius: 8px;
+
+            background: transparent;
+
+            color: #64748b;
+
+            font-size: 22px;
+
+            line-height: 1;
+        }
+
+        .sbl-message-close:hover {
+            background: #f1f5f9;
+        }
+
+
+        /* =====================================================
+           TABLET
+        ===================================================== */
+
+        @media (max-width: 900px) {
+
+            .navbar {
+                height: 70px;
+
+                padding: 0 20px;
+            }
+
+            .desktop-nav {
+                display: none;
+            }
+
+            .menu-button {
+                margin-left: auto;
+            }
+
+            .nav-left {
+                width: 52px;
+                height: 52px;
+            }
+
+            .nav-logo {
+                width: 48px;
+                height: 48px;
+            }
+
+            .nav-title {
+                font-size: 19px;
+
+                margin-left: 10px;
+            }
+
+            .side-menu {
+                top: 70px;
+
+                min-height: calc(100vh - 70px);
+            }
+
+            .about-page {
+                padding-top: 70px;
+            }
+
+            .site-footer {
+                padding: 40px 18px 25px;
+            }
+
+            .footer-school-name {
+                font-size: 22px;
+            }
+
+            .footer-description {
+                font-size: 15px;
+            }
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                height: 68px;
+
+                padding: 0 12px;
+            }
+
+            .nav-left {
+                width: 52px;
+                height: 52px;
+            }
+
+            .nav-logo {
+                width: 47px;
+                height: 47px;
+            }
+
+            .nav-title {
+                flex: 1;
+
+                margin-left: 8px;
+
+                text-align: center;
+
+                font-size: 16px;
+
+                letter-spacing: 0.2px;
+            }
+
+            .menu-button {
+                width: 45px;
+                height: 45px;
+
+                margin-left: 4px;
+            }
+
+            .menu-button span {
+                width: 27px;
+            }
+
+            .side-menu {
+                top: 68px;
+
+                width: 290px;
+                max-width: 84vw;
+
+                min-height: calc(100vh - 68px);
+
+                padding: 20px 16px;
+            }
+
+            .about-page {
+                padding-top: 68px;
+            }
+
+            .site-footer {
+                padding: 38px 14px 24px;
+            }
+
+            .footer-logo {
+                width: 78px;
+                height: 78px;
+
+                margin-bottom: 18px;
+            }
+
+            .footer-school-name {
+                font-size: 20px;
+
+                line-height: 1.45;
+            }
+
+            .footer-description {
+                margin-top: 13px;
+
+                font-size: 14px;
+
+                line-height: 1.65;
+            }
+
+            .footer-features {
+                margin-top: 28px;
+
+                gap: 12px;
+            }
+
+            .footer-feature {
+                min-height: 82px;
+
+                padding: 18px 15px;
+
+                border-radius: 12px;
+            }
+
+            .footer-feature span {
+                font-size: 15px;
+            }
+
+            .footer-bottom {
+                margin-top: 30px;
+
+                padding-top: 18px;
+
+                gap: 7px;
+            }
+
+            .copyright {
+                font-size: 13px;
+            }
+
+            .developer {
+                font-size: 15px;
+            }
+
+            .sbl-message {
+                top: 82px;
+
+                font-size: 14px;
+            }
+        }
+
+
+        /* =====================================================
+           VERY SMALL MOBILE
+        ===================================================== */
+
+        @media (max-width: 380px) {
+
+            .nav-title {
+                font-size: 15px;
+            }
+
+            .footer-school-name {
+                font-size: 18px;
+            }
+
+            .footer-description {
+                font-size: 13px;
+            }
+
+            .footer-feature {
+                min-height: 76px;
+            }
+
+            .footer-feature span {
+                font-size: 14px;
+            }
+
+            .developer {
+                font-size: 18px;
+            }
+        }
+
+
+        /* =====================================================
+           DARK MODE
+        ===================================================== */
+
+        body.dark-mode {
+            background: #0f172a;
+
+            color: #e5e7eb;
+        }
+
+        body.dark-mode .navbar {
+            background: linear-gradient(
+                135deg,
+                #111827,
+                #1e293b
+            );
+
+            border-bottom-color:
+                rgba(255, 255, 255, 0.10);
+        }
+
+        body.dark-mode .nav-title {
+            color: #ffffff;
+        }
+
+        body.dark-mode .menu-button span {
+            background: #ffffff;
+        }
+
+        body.dark-mode .side-menu {
+            background: #111827;
+        }
+
+        body.dark-mode .side-menu-links a {
+            background: #1e293b;
+
+            color: #e5e7eb;
+        }
+
+        body.dark-mode .theme-label {
+            color: #e5e7eb;
+        }
+
+        body.dark-mode .sbl-message {
+            background: #111827;
+
+            color: #ffffff;
+
+            border-color: #334155;
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <!-- =====================================================
+         FIXED NAVBAR
+    ===================================================== -->
+
+    <header class="navbar">
+
+        <div class="nav-left">
+
+            <a href="index.html" aria-label="Home">
+
+                <img
+                    src="vidya-bharati-logo.png"
+                    alt="Vidya Bharati Logo"
+                    class="nav-logo"
+                >
+
+            </a>
+
+        </div>
+
+
+        <div class="nav-title">
+            SCHOOL BOOKS LIBRARY
+        </div>
+
+
+        <!-- DESKTOP NAVIGATION -->
+
+        <nav
+            class="desktop-nav"
+            aria-label="Main Navigation"
+        >
+
+            <a href="index.html">
+                HOME
+            </a>
+
+            <a
+                href="about.html"
+                class="active"
+            >
+                ABOUT
+            </a>
+
+            <a href="login.html">
+                LOGIN
+            </a>
+
+        </nav>
+
+
+        <!-- THREE LINE MENU -->
+
+        <button
+            type="button"
+            class="menu-button"
+            id="menuButton"
+            aria-label="Open Menu"
+            aria-expanded="false"
+        >
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+    </header>
+
+
+    <!-- =====================================================
+         SIDE MENU
+    ===================================================== -->
+
+    <aside
+        class="side-menu"
+        id="sideMenu"
+        aria-label="Menu"
+    >
+
+        <div class="side-menu-links">
+
+            <a href="index.html">
+                HOME
+            </a>
+
+            <a href="about.html">
+                ABOUT
+            </a>
+
+            <a href="login.html">
+                LOGIN
+            </a>
+
+            <!--
+                IMPORTANT:
+                This does NOT open PDF.html.
+                JavaScript shows the coming soon message.
+            -->
+
+            <a
+                href="#"
+                id="downloadedPDFsLink"
+                data-page="downloaded-pdfs"
+            >
+                DOWNLOADED PDFS
+            </a>
+
+        </div>
+
+
+        <div class="menu-divider"></div>
+
+
+        <!-- DARK MODE -->
+
+        <div class="theme-row">
+
+            <span class="theme-label">
+                DARK MODE
+            </span>
+
+            <button
+                type="button"
+                class="theme-toggle"
+                id="themeToggle"
+                aria-label="Toggle Dark Mode"
+                aria-pressed="false"
+            >
+
+                <span class="toggle-circle"></span>
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MENU OVERLAY -->
+
+    <div
+        class="menu-overlay"
+        id="menuOverlay"
+        aria-hidden="true"
+    ></div>
+
+
+    <!-- =====================================================
+         ABOUT PAGE
+    ===================================================== -->
+
+    <main class="about-page">
+
+
+        <!-- =================================================
+             FOOTER / ABOUT CONTENT
+        ================================================= -->
+
+        <footer class="site-footer">
+
+            <div class="footer-container">
+
+
+                <!-- LOGO -->
+
+                <img
+                    src="vidya-bharati-logo.png"
+                    alt="Vidya Bharati Logo"
+                    class="footer-logo"
+                >
+
+
+                <!-- SCHOOL NAME -->
+
+                <h1 class="footer-school-name">
+
+                    Lala Jagdish Prasad Saraswati
+                    Vidya Mandir Senior Secondary School 
+                    Jansat Road, Muzaffarnagar
+
+                </h1>
+
+
+                <!-- DESCRIPTION -->
+
+                <p class="footer-description">
+
+                    This site is school books PDFs of 9 to 12 classes.
+
+                </p>
+
+
+                <!-- FEATURE BOXES -->
+
+                <div class="footer-features">
+
+
+                    <div class="footer-feature">
+
+                        <span>
+                            Fast &amp; Reliable
+                        </span>
+
+                    </div>
+
+
+                    <div class="footer-feature">
+
+                        <span>
+                            Works on All Devices
+                        </span>
+
+                    </div>
+
+
+                    <div class="footer-feature">
+
+                        <span>
+                            100% Safe &amp; Secure
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- FOOTER BOTTOM -->
+
+                <div class="footer-bottom">
+
+
+                    <p class="copyright">
+
+                        &copy; 2026 School Books Library
+
+                    </p>
+
+
+                    <div class="developer">
+                        
+                  <strong>Developed by Shiva
+</strong>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </footer>
+
+    </main>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ===================================================== -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+
+                /* ---------------------------------------------
+                   ELEMENTS
+                --------------------------------------------- */
+
+                const menuButton =
+                    document.getElementById("menuButton");
+
+                const sideMenu =
+                    document.getElementById("sideMenu");
+
+                const menuOverlay =
+                    document.getElementById("menuOverlay");
+
+                const themeToggle =
+                    document.getElementById("themeToggle");
+
+                const downloadedPDFsLink =
+                    document.getElementById(
+                        "downloadedPDFsLink"
+                    );
+
+
+                /* ---------------------------------------------
+                   OPEN MENU
+                --------------------------------------------- */
+
+                function openMenu() {
+
+                    sideMenu.classList.add("open");
+
+                    menuOverlay.classList.add("active");
+
+                    menuOverlay.setAttribute(
+                        "aria-hidden",
+                        "false"
+                    );
+
+                    menuButton.setAttribute(
+                        "aria-expanded",
+                        "true"
+                    );
+
+                    document.body.style.overflow =
+                        "hidden";
+                }
+
+
+                /* ---------------------------------------------
+                   CLOSE MENU
+                --------------------------------------------- */
+
+                function closeMenu() {
+
+                    sideMenu.classList.remove("open");
+
+                    menuOverlay.classList.remove("active");
+
+                    menuOverlay.setAttribute(
+                        "aria-hidden",
+                        "true"
+                    );
+
+                    menuButton.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+                    document.body.style.overflow =
+                        "";
+                }
+
+
+                /* ---------------------------------------------
+                   MENU BUTTON
+                --------------------------------------------- */
+
+                menuButton.addEventListener(
+                    "click",
+                    function (event) {
+
+                        event.stopPropagation();
+
+                        if (
+                            sideMenu.classList.contains("open")
+                        ) {
+
+                            closeMenu();
+
+                        } else {
+
+                            openMenu();
+
+                        }
+
+                    }
+                );
+
+
+                /* ---------------------------------------------
+                   OVERLAY
+                --------------------------------------------- */
+
+                menuOverlay.addEventListener(
+                    "click",
+                    closeMenu
+                );
+
+
+                /* ---------------------------------------------
+                   NORMAL MENU LINKS
+                --------------------------------------------- */
+
+                sideMenu
+                    .querySelectorAll(
+                        'a:not([data-page="downloaded-pdfs"])'
+                    )
+                    .forEach(
+                        function (link) {
+
+                            link.addEventListener(
+                                "click",
+                                closeMenu
+                            );
+
+                        }
+                    );
+
+
+                /* ---------------------------------------------
+                   DOWNLOADED PDFS
+                   COMING SOON MESSAGE
+                --------------------------------------------- */
+
+                downloadedPDFsLink.addEventListener(
+                    "click",
+                    function (event) {
+
+                        event.preventDefault();
+
+                        event.stopPropagation();
+
+                        closeMenu();
+
+                        showMessage(
+                            "Downloaded PDFs feature coming soon."
+                        );
+
+                    }
+                );
+
+
+                /* ---------------------------------------------
+                   MESSAGE FUNCTION
+                --------------------------------------------- */
+
+                function showMessage(message) {
+
+                    const oldMessage =
+                        document.querySelector(
+                            ".sbl-message"
+                        );
+
+                    if (oldMessage) {
+
+                        oldMessage.remove();
+
+                    }
+
+
+                    const box =
+                        document.createElement("div");
+
+                    box.className =
+                        "sbl-message";
+
+
+                    box.innerHTML =
+
+                        '<span class="sbl-message-icon">i</span>' +
+
+                        '<span class="sbl-message-text"></span>' +
+
+                        '<button ' +
+                        'type="button" ' +
+                        'class="sbl-message-close" ' +
+                        'aria-label="Close">' +
+                        '×' +
+                        '</button>';
+
+
+                    box.querySelector(
+                        ".sbl-message-text"
+                    ).textContent = message;
+
+
+                    document.body.appendChild(box);
+
+
+                    box.querySelector(
+                        ".sbl-message-close"
+                    ).addEventListener(
+                        "click",
+                        function () {
+
+                            box.remove();
+
+                        }
+                    );
+
+
+                    setTimeout(
+                        function () {
+
+                            if (box.isConnected) {
+
+                                box.remove();
+
+                            }
+
+                        },
+                        5000
+                    );
+
+                }
+
+
+                /* ---------------------------------------------
+                   DARK MODE
+                --------------------------------------------- */
+
+                function applyTheme(theme) {
+
+                    const dark =
+                        theme === "dark";
+
+
+                    document.body.classList.toggle(
+                        "dark-mode",
+                        dark
+                    );
+
+
+                    themeToggle.classList.toggle(
+                        "active",
+                        dark
+                    );
+
+
+                    themeToggle.setAttribute(
+                        "aria-pressed",
+                        String(dark)
+                    );
+
+                }
+
+
+                /* ---------------------------------------------
+                   LOAD SAVED THEME
+                --------------------------------------------- */
+
+                let theme = "light";
+
+                try {
+
+                    const saved =
+                        localStorage.getItem(
+                            "schoolBooksTheme"
+                        );
+
+                    if (
+                        saved === "dark" ||
+                        saved === "light"
+                    ) {
+
+                        theme = saved;
+
+                    }
+
+                } catch (_) {}
+
+
+                applyTheme(theme);
+
+
+                /* ---------------------------------------------
+                   DARK MODE BUTTON
+                --------------------------------------------- */
+
+                themeToggle.addEventListener(
+                    "click",
+                    function () {
+
+                        theme =
+                            document.body.classList.contains(
+                                "dark-mode"
+                            )
+                                ? "light"
+                                : "dark";
+
+
+                        try {
+
+                            localStorage.setItem(
+                                "schoolBooksTheme",
+                                theme
+                            );
+
+                        } catch (_) {}
+
+
+                        applyTheme(theme);
+
+                    }
+                );
+
+
+                /* ---------------------------------------------
+                   ESC KEY
+                --------------------------------------------- */
+
+                document.addEventListener(
+                    "keydown",
+                    function (event) {
+
+                        if (event.key === "Escape") {
+
+                            closeMenu();
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,4467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#d5d7da"
+    >
+
+    <title>
+        PDF Library | SCHOOL BOOKS LIBRARY
+    </title>
+
+
+    <style>
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background: #f4f8fc;
+
+            color: #20252b;
+
+            overflow-x: hidden;
+
+            transition:
+                background .25s ease,
+                color .25s ease;
+        }
+
+
+        button,
+        input {
+
+            font: inherit;
+        }
+
+
+        button {
+
+            cursor: pointer;
+        }
+
+
+        a {
+
+            text-decoration: none;
+        }
+
+
+        /* =====================================================
+           NAVBAR
+        ===================================================== */
+
+        .navbar {
+
+            position: fixed;
+
+            top: 0;
+            left: 0;
+            right: 0;
+
+            height: 68px;
+
+            z-index: 1000;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: #d5d7da;
+
+            border-bottom:
+                1px solid #bfc3c7;
+
+            box-shadow:
+                0 2px 10px rgba(0,0,0,.08);
+        }
+
+
+        .navbar-logo {
+
+            position: absolute;
+
+            left: 18px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            width: 45px;
+            height: 45px;
+
+            object-fit: contain;
+        }
+
+
+        .navbar-title {
+
+            font-size: 22px;
+
+            font-weight: 800;
+
+            letter-spacing: .8px;
+
+            color: #1f2429;
+
+            white-space: nowrap;
+        }
+
+
+        /* =====================================================
+           DESKTOP LINKS
+        ===================================================== */
+
+        .desktop-links {
+
+            position: absolute;
+
+            right: 70px;
+
+            height: 68px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 6px;
+        }
+
+
+        .desktop-links a {
+
+            padding:
+                9px 13px;
+
+            border-radius: 8px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            color: #252a30;
+
+            transition:
+                background .2s ease,
+                color .2s ease;
+        }
+
+
+        .desktop-links a:hover {
+
+            background: #eceeef;
+        }
+
+
+        /* =====================================================
+           HAMBURGER
+        ===================================================== */
+
+        .menu-button {
+
+            position: absolute;
+
+            right: 17px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            width: 39px;
+            height: 39px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background: transparent;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+            align-items: center;
+
+            gap: 5px;
+
+            z-index: 1100;
+        }
+
+
+        .menu-button span {
+
+            width: 21px;
+            height: 2px;
+
+            border-radius: 2px;
+
+            background: #252a30;
+
+            transition:
+                transform .25s ease,
+                opacity .25s ease;
+        }
+
+
+        .menu-button:hover {
+
+            background: #c5c8cb;
+        }
+
+
+        /* =====================================================
+           SIDE MENU
+        ===================================================== */
+
+        .side-menu {
+
+            position: fixed;
+
+            top: 68px;
+
+            right: -310px;
+
+            width: 290px;
+
+            height:
+                calc(100vh - 68px);
+
+            z-index: 1050;
+
+            padding:
+                22px 18px;
+
+            background: #ffffff;
+
+            border-left:
+                1px solid #d5d8db;
+
+            box-shadow:
+                -8px 0 30px
+                rgba(0,0,0,.12);
+
+            transition:
+                right .28s ease;
+
+            overflow-y: auto;
+        }
+
+
+        .side-menu.open {
+
+            right: 0;
+        }
+
+
+        .side-menu-title {
+
+            margin-bottom: 15px;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            letter-spacing: 1px;
+
+            color: #686f77;
+        }
+
+
+        .side-menu a {
+
+            display: block;
+
+            padding:
+                13px 12px;
+
+            margin-bottom: 5px;
+
+            border-radius: 9px;
+
+            color: #252a30;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            transition:
+                background .2s ease;
+        }
+
+
+        .side-menu a:hover {
+
+            background: #eef0f2;
+        }
+
+
+        .menu-line {
+
+            height: 1px;
+
+            margin:
+                14px 0;
+
+            background: #d9dcdf;
+        }
+
+
+        /* =====================================================
+           THEME
+        ===================================================== */
+
+        .theme-row {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding:
+                8px 4px;
+        }
+
+
+        .theme-label {
+
+            font-size: 13px;
+
+            font-weight: 700;
+        }
+
+
+        .theme-toggle {
+
+            width: 48px;
+            height: 26px;
+
+            padding: 3px;
+
+            border: none;
+
+            border-radius: 20px;
+
+            background: #565d65;
+        }
+
+
+        .theme-toggle::after {
+
+            content: "";
+
+            display: block;
+
+            width: 20px;
+            height: 20px;
+
+            border-radius: 50%;
+
+            background: #ffffff;
+
+            transition:
+                transform .25s ease;
+        }
+
+
+        .theme-toggle.active::after {
+
+            transform:
+                translateX(22px);
+        }
+
+
+        /* =====================================================
+           OVERLAY
+        ===================================================== */
+
+        .menu-overlay {
+
+            position: fixed;
+
+            inset:
+                68px 0 0 0;
+
+            z-index: 1020;
+
+            background:
+                rgba(0,0,0,.35);
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transition:
+                opacity .25s ease,
+                visibility .25s ease;
+        }
+
+
+        .menu-overlay.open {
+
+            opacity: 1;
+
+            visibility: visible;
+        }
+
+
+        /* =====================================================
+           MAIN PAGE
+        ===================================================== */
+
+        .page {
+
+            min-height: 100vh;
+
+            padding-top: 68px;
+        }
+
+
+        .content {
+
+            width: 100%;
+
+            max-width: 1050px;
+
+            margin:
+                0 auto;
+
+            padding:
+                30px 24px 65px;
+        }
+
+
+        /* =====================================================
+           BACK BUTTON
+        ===================================================== */
+
+        .back-button {
+
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            padding:
+                11px 18px;
+
+            margin-bottom: 22px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background: #343a40;
+
+            color: #ffffff;
+
+            font-size: 13px;
+
+            font-weight: 800;
+        }
+
+
+        .back-button:hover {
+
+            background: #20252b;
+        }
+
+
+        /* =====================================================
+           DESKTOP CONTENT LAYOUT
+        ===================================================== */
+
+        .desktop-content-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(300px, .85fr)
+                minmax(430px, 1.15fr);
+
+            gap: 22px;
+
+            align-items: start;
+        }
+
+
+        .left-column,
+        .right-column {
+
+            min-width: 0;
+        }
+
+
+        /* =====================================================
+           SELECTION
+        ===================================================== */
+
+        .selection-box {
+
+            background: #ffffff;
+
+            border:
+                1px solid #d9dcdf;
+
+            border-radius: 15px;
+
+            padding: 20px;
+
+            box-shadow:
+                0 6px 20px
+                rgba(0,0,0,.06);
+
+            margin-bottom: 18px;
+        }
+
+
+        .selection-title {
+
+            text-align: center;
+
+            margin-bottom: 18px;
+
+            font-size: 17px;
+
+            font-weight: 800;
+
+            letter-spacing: .4px;
+        }
+
+
+        .selection-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 12px;
+        }
+
+
+        .selection-item {
+
+            padding: 13px;
+
+            min-width: 0;
+
+            border-radius: 9px;
+
+            background: #f1f3f4;
+
+            border:
+                1px solid #d9dcdf;
+        }
+
+
+        .selection-item span {
+
+            display: block;
+
+            margin-bottom: 5px;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            color: #707780;
+
+            text-transform: uppercase;
+        }
+
+
+        .selection-item strong {
+
+            display: block;
+
+            font-size: 13px;
+
+            white-space: nowrap;
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+        }
+
+
+        /* =====================================================
+           UPLOAD BOX
+        ===================================================== */
+
+        .upload-box {
+
+            background: #ffffff;
+
+            border:
+                1px solid #d9dcdf;
+
+            border-radius: 15px;
+
+            padding:
+                25px 20px;
+
+            box-shadow:
+                0 6px 20px
+                rgba(0,0,0,.06);
+
+            text-align: center;
+        }
+
+
+        .upload-title {
+
+            font-size: 18px;
+
+            font-weight: 800;
+
+            margin-bottom: 8px;
+        }
+
+
+        .upload-note {
+
+            font-size: 12px;
+
+            line-height: 1.6;
+
+            color: #6d747c;
+
+            margin-bottom: 18px;
+        }
+
+
+        .upload-button {
+
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            min-width: 180px;
+
+            padding:
+                12px 20px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: #343a40;
+
+            color: #ffffff;
+
+            font-size: 13px;
+
+            font-weight: 800;
+        }
+
+
+        .upload-button:hover {
+
+            background: #20252b;
+        }
+
+
+        #pdfInput {
+
+            display: none;
+        }
+
+
+        /* =====================================================
+           AVAILABLE PDF
+        ===================================================== */
+
+        .available-section {
+
+            background: transparent;
+        }
+
+
+        .available-title {
+
+            margin-bottom: 12px;
+
+            font-size: 17px;
+
+            font-weight: 800;
+        }
+
+
+        .pdf-list {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 10px;
+        }
+
+
+        .pdf-wrapper {
+
+            width: 100%;
+        }
+
+
+        .pdf-item {
+
+            position: relative;
+
+            display: flex;
+
+            align-items: center;
+
+            min-height: 65px;
+
+            padding:
+                12px 50px 12px 14px;
+
+            background: #ffffff;
+
+            border:
+                1px solid #d9dcdf;
+
+            border-radius: 11px;
+
+            box-shadow:
+                0 3px 12px
+                rgba(0,0,0,.05);
+        }
+
+
+        .pdf-icon {
+
+            width: 38px;
+            height: 38px;
+
+            flex-shrink: 0;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 8px;
+
+            background: #eef0f2;
+
+            font-size: 11px;
+
+            font-weight: 900;
+        }
+
+
+        .pdf-info {
+
+            min-width: 0;
+
+            margin-left: 11px;
+        }
+
+
+        .pdf-name {
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            white-space: nowrap;
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+        }
+
+
+        .pdf-meta {
+
+            margin-top: 4px;
+
+            font-size: 10px;
+
+            color: #777f87;
+        }
+
+
+        /* =====================================================
+           THREE DOT
+        ===================================================== */
+
+        .pdf-menu-button {
+
+            position: absolute;
+
+            right: 10px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            width: 34px;
+            height: 34px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: transparent;
+
+            font-size: 20px;
+
+            line-height: 1;
+        }
+
+
+        .pdf-menu-button:hover {
+
+            background: #eef0f2;
+        }
+
+
+        /* =====================================================
+           PDF ACTIONS
+        ===================================================== */
+
+        .pdf-actions {
+
+            display: none;
+
+            margin-top: 8px;
+
+            padding: 10px;
+
+            border:
+                1px solid #d9dcdf;
+
+            border-radius: 10px;
+
+            background: #ffffff;
+
+            gap: 8px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .pdf-actions.show {
+
+            display: flex;
+        }
+
+
+        .action-button {
+
+            flex: 1;
+
+            min-width: 85px;
+
+            padding:
+                9px 10px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #343a40;
+
+            color: #ffffff;
+
+            font-size: 11px;
+
+            font-weight: 800;
+        }
+
+
+        .action-button:hover {
+
+            background: #20252b;
+        }
+
+
+        /* =====================================================
+           EMPTY
+        ===================================================== */
+
+        .empty-message {
+
+            padding:
+                25px 15px;
+
+            border:
+                1px dashed #c8ccd0;
+
+            border-radius: 11px;
+
+            text-align: center;
+
+            color: #777f87;
+
+            font-size: 12px;
+
+            background: #ffffff;
+        }
+
+
+        /* =====================================================
+           TOTAL
+        ===================================================== */
+
+        .total-pdfs {
+
+            margin-top: 12px;
+
+            text-align: right;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            color: #536b89;
+        }
+
+
+        /* =====================================================
+           PIN MODAL
+        ===================================================== */
+
+        .modal {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 2000;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            background:
+                rgba(0,0,0,.48);
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transition:
+                opacity .2s ease,
+                visibility .2s ease;
+        }
+
+
+        .modal.show {
+
+            opacity: 1;
+
+            visibility: visible;
+        }
+
+
+        .modal-box {
+
+            width: 100%;
+
+            max-width: 350px;
+
+            padding: 25px;
+
+            background: #ffffff;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 12px 40px
+                rgba(0,0,0,.20);
+
+            text-align: center;
+        }
+
+
+        .modal-title {
+
+            margin-bottom: 8px;
+
+            font-size: 18px;
+
+            font-weight: 800;
+        }
+
+
+        .modal-text {
+
+            margin-bottom: 16px;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+
+            color: #6d747c;
+        }
+
+
+        /* =====================================================
+           PIN DISPLAY
+        ===================================================== */
+
+        .pin-input {
+
+            width: 100%;
+
+            height: 45px;
+
+            padding:
+                0 13px;
+
+            border:
+                1px solid #cdd1d5;
+
+            border-radius: 9px;
+
+            outline: none;
+
+            text-align: center;
+
+            letter-spacing: 6px;
+
+            font-size: 20px;
+
+            font-weight: 800;
+
+            background: #fafbfc;
+
+            color: #20252b;
+        }
+
+
+        .pin-input:focus {
+
+            border-color: #6c737b;
+        }
+
+
+        /* =====================================================
+           PIN KEYPAD
+        ===================================================== */
+
+        .pin-keypad {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 8px;
+
+            margin-top: 14px;
+        }
+
+
+        .pin-key {
+
+            height: 45px;
+
+            border:
+                1px solid #d4d8dc;
+
+            border-radius: 9px;
+
+            background: #f5f6f7;
+
+            color: #252a30;
+
+            font-size: 16px;
+
+            font-weight: 800;
+
+            transition:
+                background .15s ease,
+                transform .1s ease;
+        }
+
+
+        .pin-key:hover {
+
+            background: #e9ecef;
+        }
+
+
+        .pin-key:active {
+
+            transform:
+                scale(.96);
+        }
+
+
+        .pin-key.delete-key {
+
+            font-size: 18px;
+        }
+
+
+        .pin-key.zero-key {
+
+            grid-column: 2;
+        }
+
+
+        .pin-error {
+
+            display: none;
+
+            margin-top: 10px;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            color: #555;
+        }
+
+
+        .pin-error.show {
+
+            display: block;
+        }
+
+
+        /* =====================================================
+           MODAL BUTTONS
+        ===================================================== */
+
+        .modal-buttons {
+
+            display: flex;
+
+            gap: 9px;
+
+            margin-top: 14px;
+        }
+
+
+        .modal-button {
+
+            flex: 1;
+
+            height: 42px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            font-size: 12px;
+
+            font-weight: 800;
+        }
+
+
+        .enter-button {
+
+            background: #343a40;
+
+            color: #ffffff;
+        }
+
+
+        .enter-button:hover {
+
+            background: #20252b;
+        }
+
+
+        .back-button-modal {
+
+            background: #e5e7e9;
+
+            color: #252a30;
+        }
+
+
+        .back-button-modal:hover {
+
+            background: #d9dcdf;
+        }
+
+
+        /* =====================================================
+           TOAST
+        ===================================================== */
+
+        .toast {
+
+            position: fixed;
+
+            left: 50%;
+
+            bottom: 25px;
+
+            transform:
+                translate(-50%, 20px);
+
+            z-index: 3000;
+
+            max-width:
+                min(420px, 90vw);
+
+            padding:
+                12px 18px;
+
+            border-radius: 9px;
+
+            background: #343a40;
+
+            color: #ffffff;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            text-align: center;
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transition:
+                opacity .2s ease,
+                transform .2s ease,
+                visibility .2s ease;
+        }
+
+
+        .toast.show {
+
+            opacity: 1;
+
+            visibility: visible;
+
+            transform:
+                translate(-50%, 0);
+        }
+
+
+        /* =====================================================
+           FOOTER — HOME PAGE STYLE
+        ===================================================== */
+
+        footer {
+
+            width: 100%;
+
+            background: #e6eef7;
+
+            color: #172033;
+
+            padding:
+                46px 20px 28px;
+        }
+
+
+        .footer-inner {
+
+            width: 100%;
+
+            max-width: 1200px;
+
+            margin: 0 auto;
+        }
+
+
+        .footer-school-row {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 28px;
+
+            text-align: left;
+        }
+
+
+        .footer-logo {
+
+            width: 95px;
+            height: 95px;
+
+            object-fit: contain;
+
+            flex-shrink: 0;
+        }
+
+
+        .footer-school {
+
+            max-width: 760px;
+
+            font-size: 23px;
+
+            line-height: 1.4;
+
+            font-weight: 800;
+
+            color: #172033;
+        }
+
+
+        .footer-location {
+
+            margin-top: 6px;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            color: #536174;
+        }
+
+
+        .footer-description {
+
+            margin-top: 15px;
+
+            padding-top: 15px;
+
+            border-top:
+                1px solid
+                rgba(31,41,55,.16);
+
+            font-size: 15px;
+
+            line-height: 1.6;
+
+            color: #5c697b;
+        }
+
+
+        .footer-features {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+
+            margin-top: 35px;
+        }
+
+
+        .feature-card {
+
+            min-height: 92px;
+
+            padding:
+                18px 20px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+
+            border:
+                1px solid
+                rgba(31,41,55,.10);
+
+            border-radius: 14px;
+
+            background: #f8fafc;
+
+            box-shadow:
+                0 4px 12px
+                rgba(31,41,55,.05);
+        }
+
+
+        .feature-icon {
+
+            width: 44px;
+            height: 44px;
+
+            flex-shrink: 0;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 12px;
+
+            background: #e8eef7;
+
+            font-size: 22px;
+        }
+
+
+        .feature-card strong {
+
+            display: block;
+
+            font-size: 15px;
+
+            color: #263244;
+        }
+
+
+        .feature-card span {
+
+            display: block;
+
+            margin-top: 5px;
+
+            font-size: 12px;
+
+            line-height: 1.4;
+
+            color: #667386;
+        }
+
+
+        .footer-bottom {
+
+            margin-top: 35px;
+
+            padding-top: 20px;
+
+            border-top:
+                1px solid
+                rgba(31,41,55,.15);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            color: #657184;
+
+            font-size: 13px;
+        }
+
+
+        .developer {
+
+            color: #26364d;
+
+            font-size: 15px;
+
+            font-weight: 700;
+        }
+
+
+        /* =====================================================
+           DARK MODE
+        ===================================================== */
+
+        body.dark-mode {
+
+            background: #17191c;
+
+            color: #f1f3f4;
+        }
+
+
+        body.dark-mode .navbar {
+
+            background: #25292e;
+
+            border-bottom-color: #3c4248;
+        }
+
+
+        body.dark-mode .navbar-title {
+
+            color: #ffffff;
+        }
+
+
+        body.dark-mode .desktop-links a {
+
+            color: #f0f2f4;
+        }
+
+
+        body.dark-mode .desktop-links a:hover {
+
+            background: #343940;
+        }
+
+
+        body.dark-mode .menu-button span {
+
+            background: #ffffff;
+        }
+
+
+        body.dark-mode .menu-button:hover {
+
+            background: #343940;
+        }
+
+
+        body.dark-mode .side-menu {
+
+            background: #202328;
+
+            border-left-color: #3c4248;
+        }
+
+
+        body.dark-mode .side-menu a {
+
+            color: #f0f2f4;
+        }
+
+
+        body.dark-mode .side-menu a:hover {
+
+            background: #30353b;
+        }
+
+
+        body.dark-mode .menu-line {
+
+            background: #3c4248;
+        }
+
+
+        body.dark-mode .selection-box,
+        body.dark-mode .upload-box,
+        body.dark-mode .pdf-item,
+        body.dark-mode .pdf-actions,
+        body.dark-mode .empty-message,
+        body.dark-mode .modal-box {
+
+            background: #202328;
+
+            border-color: #3c4248;
+        }
+
+
+        body.dark-mode .selection-item,
+        body.dark-mode .pdf-icon {
+
+            background: #2b3035;
+
+            border-color: #41474d;
+        }
+
+
+        body.dark-mode .selection-item span,
+        body.dark-mode .pdf-meta,
+        body.dark-mode .upload-note,
+        body.dark-mode .modal-text {
+
+            color: #aeb5bc;
+        }
+
+
+        body.dark-mode .pdf-menu-button:hover {
+
+            background: #30353b;
+        }
+
+
+        body.dark-mode .pin-input {
+
+            background: #292e33;
+
+            border-color: #464d54;
+
+            color: #ffffff;
+        }
+
+
+        body.dark-mode .pin-key {
+
+            background: #2b3035;
+
+            border-color: #464d54;
+
+            color: #ffffff;
+        }
+
+
+        body.dark-mode .pin-key:hover {
+
+            background: #363c42;
+        }
+
+
+        body.dark-mode .back-button-modal {
+
+            background: #363b40;
+
+            color: #ffffff;
+        }
+
+
+        body.dark-mode footer {
+
+            background: #111827;
+
+            color: #e5e7eb;
+        }
+
+
+        body.dark-mode .footer-school {
+
+            color: #ffffff;
+        }
+
+
+        body.dark-mode .footer-location,
+        body.dark-mode .footer-description {
+
+            color: #aab4c2;
+        }
+
+
+        body.dark-mode .footer-description,
+        body.dark-mode .footer-bottom {
+
+            border-color: #334155;
+        }
+
+
+        body.dark-mode .feature-card {
+
+            background: #1e293b;
+
+            border-color: #334155;
+        }
+
+
+        body.dark-mode .feature-icon {
+
+            background: #273449;
+        }
+
+
+        body.dark-mode .feature-card strong {
+
+            color: #ffffff;
+        }
+
+
+        body.dark-mode .feature-card span {
+
+            color: #aab4c2;
+        }
+
+
+        body.dark-mode .developer {
+
+            color: #e5e7eb;
+        }
+
+
+        /* =====================================================
+           TABLET
+        ===================================================== */
+
+        @media (max-width: 900px) {
+
+            .desktop-content-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .footer-features {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .footer-school-row {
+
+                flex-direction: column;
+
+                text-align: center;
+            }
+
+
+            .footer-school {
+
+                max-width: 850px;
+            }
+
+
+            .footer-description {
+
+                text-align: center;
+            }
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+
+                height: 62px;
+            }
+
+
+            .page {
+
+                padding-top: 62px;
+            }
+
+
+            .navbar-logo {
+
+                left: 11px;
+
+                width: 40px;
+                height: 40px;
+            }
+
+
+            .navbar-title {
+
+                font-size: 16px;
+
+                letter-spacing: .5px;
+            }
+
+
+            .desktop-links {
+
+                display: none;
+            }
+
+
+            .menu-button {
+
+                right: 9px;
+            }
+
+
+            .side-menu {
+
+                top: 62px;
+
+                height:
+                    calc(100vh - 62px);
+            }
+
+
+            .menu-overlay {
+
+                inset:
+                    62px 0 0 0;
+            }
+
+
+            .content {
+
+                padding:
+                    25px 15px 45px;
+            }
+
+
+            .selection-grid {
+
+                grid-template-columns:
+                    1fr 1fr;
+            }
+
+
+            .selection-box,
+            .upload-box {
+
+                border-radius: 13px;
+            }
+
+
+            .pdf-actions {
+
+                display: none;
+            }
+
+
+            .pdf-actions.show {
+
+                display: flex;
+            }
+
+
+            .footer-school {
+
+                font-size: 19px;
+            }
+
+
+            .footer-location {
+
+                font-size: 13px;
+            }
+
+
+            .footer-logo {
+
+                width: 80px;
+                height: 80px;
+            }
+
+
+            .footer-bottom {
+
+                flex-direction: column;
+
+                text-align: center;
+            }
+        }
+
+
+        /* =====================================================
+           SMALL MOBILE
+        ===================================================== */
+
+        @media (max-width: 380px) {
+
+            .navbar-title {
+
+                font-size: 14px;
+            }
+
+
+            .selection-grid {
+
+                gap: 8px;
+            }
+
+
+            .selection-item {
+
+                padding: 10px;
+            }
+
+
+            .selection-item strong {
+
+                font-size: 12px;
+            }
+
+
+            .content {
+
+                padding-left: 12px;
+
+                padding-right: 12px;
+            }
+
+
+            .footer-school {
+
+                font-size: 18px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         NAVBAR
+    ===================================================== -->
+
+    <header class="navbar">
+
+
+        <img
+            src="vidya-bharati-logo.png"
+            alt="Vidya Bharati Logo"
+            class="navbar-logo"
+        >
+
+
+        <div class="navbar-title">
+
+            SCHOOL BOOKS LIBRARY
+
+        </div>
+
+
+        <!-- DESKTOP LINKS -->
+
+        <nav class="desktop-links">
+
+            <a href="index.html">
+
+                HOME
+
+            </a>
+
+
+            <a href="about.html">
+
+                ABOUT
+
+            </a>
+
+
+            <a href="login.html">
+
+                LOGIN
+
+            </a>
+
+        </nav>
+
+
+        <!-- HAMBURGER -->
+
+        <button
+            class="menu-button"
+            id="menuButton"
+            type="button"
+            aria-label="Open menu"
+            aria-expanded="false"
+        >
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         SIDE MENU
+    ===================================================== -->
+
+    <aside
+        class="side-menu"
+        id="sideMenu"
+    >
+
+        <div class="side-menu-title">
+
+            MENU
+
+        </div>
+
+
+        <a href="index.html">
+
+            Home
+
+        </a>
+
+
+        <a href="about.html">
+
+            About
+
+        </a>
+
+
+        <a href="login.html">
+
+            Login
+
+        </a>
+
+
+        <!-- IMPORTANT:
+             DOES NOT OPEN PDF.html -->
+
+        <a
+            href="#"
+            id="downloadedPDFsLink"
+        >
+
+            Downloaded PDFs
+
+        </a>
+
+
+        <div class="menu-line"></div>
+
+
+        <div class="theme-row">
+
+            <span class="theme-label">
+
+                Dark Mode
+
+            </span>
+
+
+            <button
+                class="theme-toggle"
+                id="themeToggle"
+                type="button"
+                aria-label="Toggle dark mode"
+                aria-pressed="false"
+            ></button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- OVERLAY -->
+
+    <div
+        class="menu-overlay"
+        id="menuOverlay"
+    ></div>
+
+
+
+    <!-- =====================================================
+         MAIN
+    ===================================================== -->
+
+    <main class="page">
+
+
+        <section class="content">
+
+
+            <!-- BACK TO HOME -->
+
+            <a
+                href="index.html"
+                class="back-button"
+                id="backButton"
+            >
+
+                ← BACK TO HOME
+
+            </a>
+
+
+
+            <!-- DESKTOP TWO-COLUMN CONTENT -->
+
+            <div class="desktop-content-grid">
+
+
+                <!-- =================================================
+                     LEFT
+                ================================================== -->
+
+                <div class="left-column">
+
+
+                    <!-- SELECTED INFORMATION -->
+
+                    <div class="selection-box">
+
+
+                        <div class="selection-title">
+
+                            SELECTED INFORMATION
+
+                        </div>
+
+
+                        <div class="selection-grid">
+
+
+                            <div class="selection-item">
+
+                                <span>
+
+                                    Board
+
+                                </span>
+
+
+                                <strong id="boardValue">
+
+                                    —
+
+                                </strong>
+
+                            </div>
+
+
+                            <div class="selection-item">
+
+                                <span>
+
+                                    Class
+
+                                </span>
+
+
+                                <strong id="classValue">
+
+                                    —
+
+                                </strong>
+
+                            </div>
+
+
+                            <div class="selection-item">
+
+                                <span>
+
+                                    Subject
+
+                                </span>
+
+
+                                <strong id="subjectValue">
+
+                                    —
+
+                                </strong>
+
+                            </div>
+
+
+                            <div class="selection-item">
+
+                                <span>
+
+                                    Book
+
+                                </span>
+
+
+                                <strong id="bookValue">
+
+                                    —
+
+                                </strong>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- TEACHER UPLOAD -->
+
+                    <div class="upload-box">
+
+
+                        <div class="upload-title">
+
+                            TEACHER PDF UPLOAD
+
+                        </div>
+
+
+                        <p class="upload-note">
+
+                            Teacher access is required to upload
+                            a PDF. Select a PDF file from your
+                            device and add it to the library.
+
+                        </p>
+
+
+                        <button
+                            class="upload-button"
+                            id="uploadButton"
+                            type="button"
+                        >
+
+                            UPLOAD PDF
+
+                        </button>
+
+
+                        <input
+                            type="file"
+                            id="pdfInput"
+                            accept="application/pdf"
+                        >
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                     RIGHT
+                ================================================== -->
+
+                <div class="right-column">
+
+
+                    <!-- AVAILABLE PDFS -->
+
+                    <section class="available-section">
+
+
+                        <h2 class="available-title">
+
+                            AVAILABLE PDF
+
+                        </h2>
+
+
+                        <div
+                            class="pdf-list"
+                            id="pdfList"
+                        >
+
+
+                            <div
+                                class="empty-message"
+                                id="emptyMessage"
+                            >
+
+                                No PDF available yet.
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div
+                            class="total-pdfs"
+                            id="totalPdfs"
+                            style="display:none;"
+                        >
+
+                            Total PDFs:
+                            <span id="totalPdfNumber">0</span>
+
+                        </div>
+
+
+                    </section>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ===================================================== -->
+
+    <footer>
+
+
+        <div class="footer-inner">
+
+
+            <div class="footer-school-row">
+
+
+                <img
+                    src="vidya-bharati-logo.png"
+                    alt="Vidya Bharati Logo"
+                    class="footer-logo"
+                >
+
+
+                <div>
+
+
+                    <div class="footer-school">
+
+                        LALA JAGDISH PRASAD SARASWATI
+                        VIDYA MANDIR SENIOR SECONDARY SCHOOL 
+
+                    </div>
+
+
+                    <div class="footer-location">
+
+                        JANSATH ROAD, MUZAFFARNAGAR
+
+                    </div>
+
+
+                    <div class="footer-description">
+
+                        This site is a school books PDF library
+                        for classes 9 to 12.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FEATURE CARDS -->
+
+            <div class="footer-features">
+
+
+                <div class="feature-card">
+
+
+                    <div class="feature-icon">
+
+                        ⚡
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+
+                            Fast &amp; Reliable
+
+                        </strong>
+
+
+                        <span>
+
+                            Instant results, no waiting
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="feature-card">
+
+
+                    <div class="feature-icon">
+
+                        ▣
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+
+                            Works on All Devices
+
+                        </strong>
+
+
+                        <span>
+
+                            Mobile, Tablet &amp; Desktop
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="feature-card">
+
+
+                    <div class="feature-icon">
+
+                        🛡
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+
+                            100% Safe &amp; Secure
+
+                        </strong>
+
+
+                        <span>
+
+                            Your data is always protected
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- FOOTER BOTTOM -->
+
+            <div class="footer-bottom">
+
+
+                <div>
+
+                    © 2026 SCHOOL BOOKS LIBRARY
+
+                </div>
+
+
+                <div class="developer">
+
+                    &lt;/&gt;&nbsp;
+                    Developed by
+                    <strong>Shiva</strong>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         PIN MODAL
+    ===================================================== -->
+
+    <div
+        class="modal"
+        id="pinModal"
+    >
+
+
+        <div class="modal-box">
+
+
+            <div
+                class="modal-title"
+                id="modalTitle"
+            >
+
+                TEACHER ACCESS
+
+            </div>
+
+
+            <p
+                class="modal-text"
+                id="modalText"
+            >
+
+                Enter the teacher access PIN to continue.
+
+            </p>
+
+
+            <!-- PIN DISPLAY -->
+
+            <input
+                type="password"
+                class="pin-input"
+                id="pinInput"
+                inputmode="none"
+                maxlength="4"
+                placeholder="••••"
+                autocomplete="off"
+                readonly
+            >
+
+
+            <!-- KEYPAD -->
+
+            <div class="pin-keypad">
+
+
+                <button
+                    type="button"
+                    class="pin-key"
+                    data-key="1"
+                >
+                    1
+                </button>
+
+
+                <button
+                    type="button"
+                    class="pin-key"
+                    data-key="2"
+                >
+                    2
+                </button>
+
+
+                <button
+                    type="button"
+                    class="pin-key"
+                    data-key="3"
+                >
+                    3
+                </button>
+
+
+                <button
+                    type="button"
+                    class="pin-key"
+                    data-key="4"
+                >
+                    4
+                </button>
+
+
+                <button
+                    type="button"
+                    class="pin-key"
+                    data-key="5"
+                >
+                    5
+                </button>
+
+
+                <button
+                    type="button"
+                    class="pin-key"
+                    data-key="6"
+                >
+                    6
+                </button>
+
+
+                <button
+                    type="button"
+                    class="pin-key"
+                    data-key="7"
+                >
+                    7
+                </button>
+
+
+                <button
+                    type="button"
+                    class="pin-key"
+                    data-key="8"
+                >
+                    8
+                </button>
+
+
+                <button
+                    type="button"
+                    class="pin-key"
+                    data-key="9"
+                >
+                    9
+                </button>
+
+
+                <button
+                    type="button"
+                    class="pin-key zero-key"
+                    data-key="0"
+                >
+                    0
+                </button>
+
+
+                <button
+                    type="button"
+                    class="pin-key delete-key"
+                    id="pinDeleteKey"
+                    aria-label="Delete last digit"
+                >
+                    ×
+                </button>
+
+
+            </div>
+
+
+            <div
+                class="pin-error"
+                id="pinError"
+            >
+
+                Incorrect PIN. Please try again.
+
+            </div>
+
+
+            <div class="modal-buttons">
+
+
+                <button
+                    class="modal-button enter-button"
+                    id="pinEnter"
+                    type="button"
+                >
+
+                    ENTER
+
+                </button>
+
+
+                <button
+                    class="modal-button back-button-modal"
+                    id="pinBack"
+                    type="button"
+                >
+
+                    BACK
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         TOAST
+    ===================================================== -->
+
+    <div
+        class="toast"
+        id="toast"
+        role="status"
+        aria-live="polite"
+    ></div>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ===================================================== -->
+
+    <script>
+
+        "use strict";
+
+
+        /* =====================================================
+           SAFE JSON
+        ===================================================== */
+
+        function safeJsonParse(value, fallback) {
+
+            try {
+
+                return JSON.parse(value);
+
+            } catch (error) {
+
+                return fallback;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           MENU
+        ===================================================== */
+
+        const menuButton =
+            document.getElementById("menuButton");
+
+        const sideMenu =
+            document.getElementById("sideMenu");
+
+        const menuOverlay =
+            document.getElementById("menuOverlay");
+
+
+        function openMenu() {
+
+            sideMenu.classList.add("open");
+
+            menuOverlay.classList.add("open");
+
+            menuButton.setAttribute(
+                "aria-expanded",
+                "true"
+            );
+        }
+
+
+        function closeMenu() {
+
+            sideMenu.classList.remove("open");
+
+            menuOverlay.classList.remove("open");
+
+            menuButton.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+        }
+
+
+        menuButton.addEventListener(
+            "click",
+            function() {
+
+                if (
+                    sideMenu.classList.contains("open")
+                ) {
+
+                    closeMenu();
+
+                } else {
+
+                    openMenu();
+
+                }
+
+            }
+        );
+
+
+        menuOverlay.addEventListener(
+            "click",
+            closeMenu
+        );
+
+
+        document
+            .querySelectorAll(
+                '.side-menu a:not(#downloadedPDFsLink)'
+            )
+            .forEach(
+                function(link) {
+
+                    link.addEventListener(
+                        "click",
+                        closeMenu
+                    );
+
+                }
+            );
+
+
+        /* =====================================================
+           DOWNLOADED PDFS
+        ===================================================== */
+
+        const downloadedPDFsLink =
+            document.getElementById(
+                "downloadedPDFsLink"
+            );
+
+
+        downloadedPDFsLink.addEventListener(
+            "click",
+            function(event) {
+
+                event.preventDefault();
+
+                closeMenu();
+
+                showToast(
+                    "Downloaded PDFs feature coming soon."
+                );
+
+            }
+        );
+
+
+        /* =====================================================
+           ESCAPE
+        ===================================================== */
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (event.key === "Escape") {
+
+                    closeMenu();
+
+                    closePinModal();
+
+                }
+
+            }
+        );
+
+
+        /* =====================================================
+           DARK MODE
+        ===================================================== */
+
+        const themeToggle =
+            document.getElementById(
+                "themeToggle"
+            );
+
+
+        const THEME_KEY =
+            "schoolPdfLibraryTheme";
+
+
+        function applyTheme(theme) {
+
+            const dark =
+                theme === "dark";
+
+
+            document.body.classList.toggle(
+                "dark-mode",
+                dark
+            );
+
+
+            themeToggle.classList.toggle(
+                "active",
+                dark
+            );
+
+
+            themeToggle.setAttribute(
+                "aria-pressed",
+                String(dark)
+            );
+        }
+
+
+        let savedTheme = "light";
+
+
+        try {
+
+            savedTheme =
+                localStorage.getItem(
+                    THEME_KEY
+                ) || "light";
+
+        } catch (error) {
+
+            savedTheme = "light";
+
+        }
+
+
+        applyTheme(savedTheme);
+
+
+        themeToggle.addEventListener(
+            "click",
+            function() {
+
+                const dark =
+                    document.body.classList.contains(
+                        "dark-mode"
+                    );
+
+
+                const newTheme =
+                    dark
+                        ? "light"
+                        : "dark";
+
+
+                try {
+
+                    localStorage.setItem(
+                        THEME_KEY,
+                        newTheme
+                    );
+
+                } catch (error) {}
+
+
+                applyTheme(newTheme);
+
+            }
+        );
+
+
+        /* =====================================================
+           TOAST
+        ===================================================== */
+
+        const toast =
+            document.getElementById("toast");
+
+
+        let toastTimer = null;
+
+
+        function showToast(message) {
+
+            toast.textContent =
+                message;
+
+            toast.classList.add(
+                "show"
+            );
+
+
+            clearTimeout(toastTimer);
+
+
+            toastTimer =
+                setTimeout(
+                    function() {
+
+                        toast.classList.remove(
+                            "show"
+                        );
+
+                    },
+                    3000
+                );
+        }
+
+
+        /* =====================================================
+           SELECTED DATA
+        ===================================================== */
+
+        const boardValue =
+            document.getElementById(
+                "boardValue"
+            );
+
+        const classValue =
+            document.getElementById(
+                "classValue"
+            );
+
+        const subjectValue =
+            document.getElementById(
+                "subjectValue"
+            );
+
+        const bookValue =
+            document.getElementById(
+                "bookValue"
+            );
+
+
+        /*
+           First read the exact data sent by index.html
+           through the URL.
+        */
+
+        const urlParams =
+            new URLSearchParams(
+                window.location.search
+            );
+
+
+        let selectedData =
+            safeJsonParse(
+                localStorage.getItem(
+                    "schoolPdfLibrarySelection"
+                ) || "{}",
+                {}
+            );
+
+
+        /*
+           URL data has priority.
+           This prevents old selection data from being shown.
+        */
+
+        const urlBoard =
+            urlParams.get("board");
+
+        const urlClass =
+            urlParams.get("class");
+
+        const urlSubject =
+            urlParams.get("subject");
+
+        const urlBook =
+            urlParams.get("book");
+
+
+        if (urlBoard !== null) {
+
+            selectedData.board =
+                urlBoard;
+
+        }
+
+
+        if (urlClass !== null) {
+
+            selectedData.className =
+                urlClass;
+
+        }
+
+
+        if (urlSubject !== null) {
+
+            selectedData.subject =
+                urlSubject;
+
+        }
+
+
+        if (urlBook !== null) {
+
+            selectedData.book =
+                urlBook;
+
+        }
+
+
+        boardValue.textContent =
+            selectedData.board || "—";
+
+
+        classValue.textContent =
+            selectedData.className || "—";
+
+
+        subjectValue.textContent =
+            selectedData.subject || "—";
+
+
+        bookValue.textContent =
+            selectedData.book || "—";
+
+
+        /*
+           Keep the current selection available to this page.
+        */
+
+        try {
+
+            localStorage.setItem(
+                "schoolPdfLibrarySelection",
+                JSON.stringify(selectedData)
+            );
+
+        } catch (error) {}
+
+
+        /* =====================================================
+           PIN SYSTEM
+        ===================================================== */
+
+        const TEACHER_PIN =
+            "8273";
+
+
+        const DELETE_PIN =
+            "9548";
+
+
+        const pinModal =
+            document.getElementById(
+                "pinModal"
+            );
+
+
+        const pinInput =
+            document.getElementById(
+                "pinInput"
+            );
+
+
+        const pinEnter =
+            document.getElementById(
+                "pinEnter"
+            );
+
+
+        const pinBack =
+            document.getElementById(
+                "pinBack"
+            );
+
+
+        const pinError =
+            document.getElementById(
+                "pinError"
+            );
+
+
+        const modalTitle =
+            document.getElementById(
+                "modalTitle"
+            );
+
+
+        const modalText =
+            document.getElementById(
+                "modalText"
+            );
+
+
+        const pinDeleteKey =
+            document.getElementById(
+                "pinDeleteKey"
+            );
+
+
+        const pinKeys =
+            document.querySelectorAll(
+                ".pin-key[data-key]"
+            );
+
+
+        let pinMode = "";
+
+
+        let deleteTarget = null;
+
+
+        function openPinModal(mode) {
+
+            pinMode =
+                mode;
+
+
+            pinInput.value =
+                "";
+
+
+            pinError.classList.remove(
+                "show"
+            );
+
+
+            if (mode === "upload") {
+
+                modalTitle.textContent =
+                    "TEACHER ACCESS";
+
+
+                modalText.textContent =
+                    "Enter the teacher access PIN to upload a PDF.";
+
+            }
+
+
+            if (mode === "delete") {
+
+                modalTitle.textContent =
+                    "DELETE PDF";
+
+
+                modalText.textContent =
+                    "Enter the delete PIN to remove this PDF.";
+
+            }
+
+
+            pinModal.classList.add(
+                "show"
+            );
+        }
+
+
+        function closePinModal() {
+
+            pinModal.classList.remove(
+                "show"
+            );
+
+
+            pinInput.value =
+                "";
+
+
+            pinError.classList.remove(
+                "show"
+            );
+
+
+            pinMode =
+                "";
+
+
+            deleteTarget =
+                null;
+        }
+
+
+        pinBack.addEventListener(
+            "click",
+            closePinModal
+        );
+
+
+        /* =====================================================
+           KEYPAD
+        ===================================================== */
+
+        pinKeys.forEach(
+            function(keyButton) {
+
+                keyButton.addEventListener(
+                    "click",
+                    function() {
+
+                        const digit =
+                            keyButton.dataset.key;
+
+
+                        if (
+                            pinInput.value.length >= 4
+                        ) {
+
+                            return;
+
+                        }
+
+
+                        pinInput.value +=
+                            digit;
+
+
+                        pinError.classList.remove(
+                            "show"
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+        pinDeleteKey.addEventListener(
+            "click",
+            function() {
+
+                pinInput.value =
+                    pinInput.value.slice(
+                        0,
+                        -1
+                    );
+
+                pinError.classList.remove(
+                    "show"
+                );
+
+            }
+        );
+
+
+        /* =====================================================
+           PIN ENTER
+        ===================================================== */
+
+        pinEnter.addEventListener(
+            "click",
+            verifyPin
+        );
+
+
+        function verifyPin() {
+
+            const enteredPin =
+                pinInput.value;
+
+
+            const correctPin =
+                pinMode === "upload"
+                    ? TEACHER_PIN
+                    : DELETE_PIN;
+
+
+            if (
+                enteredPin !== correctPin
+            ) {
+
+                pinError.classList.add(
+                    "show"
+                );
+
+
+                pinInput.value =
+                    "";
+
+
+                return;
+
+            }
+
+
+            pinError.classList.remove(
+                "show"
+            );
+
+
+            if (
+                pinMode === "upload"
+            ) {
+
+                closePinModal();
+
+
+                document
+                    .getElementById(
+                        "pdfInput"
+                    )
+                    .click();
+
+
+                return;
+
+            }
+
+
+            if (
+                pinMode === "delete"
+            ) {
+
+                const target =
+                    deleteTarget;
+
+
+                closePinModal();
+
+
+                if (target !== null) {
+
+                    deletePdf(target);
+
+                }
+
+            }
+
+        }
+
+
+        /* =====================================================
+           UPLOAD
+        ===================================================== */
+
+        const uploadButton =
+            document.getElementById(
+                "uploadButton"
+            );
+
+
+        const pdfInput =
+            document.getElementById(
+                "pdfInput"
+            );
+
+
+        uploadButton.addEventListener(
+            "click",
+            function() {
+
+                openPinModal(
+                    "upload"
+                );
+
+            }
+        );
+
+
+        pdfInput.addEventListener(
+            "change",
+            function() {
+
+                const file =
+                    pdfInput.files[0];
+
+
+                if (!file) {
+
+                    return;
+
+                }
+
+
+                if (
+                    file.type !==
+                    "application/pdf"
+                ) {
+
+                    alert(
+                        "Please select a PDF file."
+                    );
+
+
+                    pdfInput.value =
+                        "";
+
+
+                    return;
+
+                }
+
+
+                /*
+                   The selected Board/Class/Subject/Book
+                   are stored with this PDF.
+                */
+
+                const reader =
+                    new FileReader();
+
+
+                reader.onload =
+                    function(event) {
+
+                        const pdfData = {
+
+                            id:
+                                Date.now(),
+
+                            name:
+                                file.name,
+
+                            size:
+                                file.size,
+
+                            data:
+                                event.target.result,
+
+                            board:
+                                selectedData.board || "",
+
+                            className:
+                                selectedData.className || "",
+
+                            subject:
+                                selectedData.subject || "",
+
+                            book:
+                                selectedData.book || "",
+
+                            date:
+                                new Date()
+                                    .toLocaleDateString()
+
+                        };
+
+
+                        savePdf(
+                            pdfData
+                        );
+
+
+                        renderPdfs();
+
+                    };
+
+
+                reader.readAsDataURL(
+                    file
+                );
+
+
+                pdfInput.value =
+                    "";
+
+            }
+        );
+
+
+        /* =====================================================
+           PDF STORAGE
+        ===================================================== */
+
+        const PDF_STORAGE_KEY =
+            "schoolPdfLibraryPDFs";
+
+
+        function getPdfs() {
+
+            try {
+
+                const value =
+                    localStorage.getItem(
+                        PDF_STORAGE_KEY
+                    );
+
+
+                return safeJsonParse(
+                    value || "[]",
+                    []
+                );
+
+            } catch (error) {
+
+                return [];
+
+            }
+
+        }
+
+
+        function savePdf(pdf) {
+
+            const pdfs =
+                getPdfs();
+
+
+            pdfs.push(
+                pdf
+            );
+
+
+            try {
+
+                localStorage.setItem(
+                    PDF_STORAGE_KEY,
+                    JSON.stringify(pdfs)
+                );
+
+            } catch (error) {
+
+                alert(
+                    "Unable to save this PDF. Browser storage may be full."
+                );
+
+            }
+
+        }
+
+
+        /* =====================================================
+           FORMAT FILE SIZE
+        ===================================================== */
+
+        function formatFileSize(bytes) {
+
+            if (
+                bytes < 1024
+            ) {
+
+                return (
+                    bytes + " B"
+                );
+
+            }
+
+
+            if (
+                bytes < 1024 * 1024
+            ) {
+
+                return (
+                    (bytes / 1024)
+                        .toFixed(1)
+                    + " KB"
+                );
+
+            }
+
+
+            return (
+                (bytes / (1024 * 1024))
+                    .toFixed(1)
+                + " MB"
+            );
+
+        }
+
+
+        /* =====================================================
+           PDF MATCHING
+        ===================================================== */
+
+        function normalize(value) {
+
+            return String(
+                value || ""
+            )
+                .trim()
+                .toLowerCase();
+
+        }
+
+
+        function isPdfForCurrentSelection(pdf) {
+
+            const board =
+                normalize(
+                    selectedData.board
+                );
+
+
+            const className =
+                normalize(
+                    selectedData.className
+                );
+
+
+            const subject =
+                normalize(
+                    selectedData.subject
+                );
+
+
+            const book =
+                normalize(
+                    selectedData.book
+                );
+
+
+            /*
+               If there is no complete selection,
+               don't show PDFs belonging to another
+               selection.
+            */
+
+            if (
+                !board ||
+                !className ||
+                !subject ||
+                !book
+            ) {
+
+                return false;
+
+            }
+
+
+            return (
+
+                normalize(pdf.board)
+                    === board
+
+                &&
+
+                normalize(pdf.className)
+                    === className
+
+                &&
+
+                normalize(pdf.subject)
+                    === subject
+
+                &&
+
+                normalize(pdf.book)
+                    === book
+
+            );
+
+        }
+
+
+        /* =====================================================
+           RENDER PDFS
+        ===================================================== */
+
+        const pdfList =
+            document.getElementById(
+                "pdfList"
+            );
+
+
+        const totalPdfs =
+            document.getElementById(
+                "totalPdfs"
+            );
+
+
+        const totalPdfNumber =
+            document.getElementById(
+                "totalPdfNumber"
+            );
+
+
+        function renderPdfs() {
+
+            const allPdfs =
+                getPdfs();
+
+
+            const matchingPdfs =
+                allPdfs.filter(
+                    isPdfForCurrentSelection
+                );
+
+
+            pdfList.innerHTML =
+                "";
+
+
+            if (
+                matchingPdfs.length === 0
+            ) {
+
+                pdfList.appendChild(
+                    createEmptyMessage()
+                );
+
+
+                totalPdfs.style.display =
+                    "none";
+
+
+                return;
+
+            }
+
+
+            matchingPdfs.forEach(
+                function(pdf) {
+
+                    createPdfItem(
+                        pdf
+                    );
+
+                }
+            );
+
+
+            totalPdfNumber.textContent =
+                matchingPdfs.length;
+
+
+            totalPdfs.style.display =
+                "block";
+
+        }
+
+
+        /* =====================================================
+           CREATE PDF ITEM
+        ===================================================== */
+
+        function createPdfItem(pdf) {
+
+            const wrapper =
+                document.createElement(
+                    "div"
+                );
+
+
+            wrapper.className =
+                "pdf-wrapper";
+
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+
+            item.className =
+                "pdf-item";
+
+
+            const icon =
+                document.createElement(
+                    "div"
+                );
+
+
+            icon.className =
+                "pdf-icon";
+
+
+            icon.textContent =
+                "PDF";
+
+
+            const info =
+                document.createElement(
+                    "div"
+                );
+
+
+            info.className =
+                "pdf-info";
+
+
+            const name =
+                document.createElement(
+                    "div"
+                );
+
+
+            name.className =
+                "pdf-name";
+
+
+            name.textContent =
+                pdf.name;
+
+
+            const meta =
+                document.createElement(
+                    "div"
+                );
+
+
+            meta.className =
+                "pdf-meta";
+
+
+            meta.textContent =
+                formatFileSize(
+                    pdf.size
+                )
+                + " • "
+                + (
+                    pdf.date ||
+                    "Uploaded PDF"
+                );
+
+
+            info.appendChild(
+                name
+            );
+
+
+            info.appendChild(
+                meta
+            );
+
+
+            const dots =
+                document.createElement(
+                    "button"
+                );
+
+
+            dots.className =
+                "pdf-menu-button";
+
+
+            dots.type =
+                "button";
+
+
+            dots.textContent =
+                "⋮";
+
+
+            dots.setAttribute(
+                "aria-label",
+                "PDF options"
+            );
+
+
+            item.appendChild(
+                icon
+            );
+
+
+            item.appendChild(
+                info
+            );
+
+
+            item.appendChild(
+                dots
+            );
+
+
+            const actions =
+                document.createElement(
+                    "div"
+                );
+
+
+            actions.className =
+                "pdf-actions";
+
+
+            /* OPEN */
+
+            const openButton =
+                createActionButton(
+                    "OPEN"
+                );
+
+
+            openButton.addEventListener(
+                "click",
+                function() {
+
+                    openPdf(
+                        pdf
+                    );
+
+                }
+            );
+
+
+            /* DOWNLOAD */
+
+            const downloadButton =
+                createActionButton(
+                    "DOWNLOAD"
+                );
+
+
+            downloadButton.addEventListener(
+                "click",
+                function() {
+
+                    downloadPdf(
+                        pdf
+                    );
+
+                }
+            );
+
+
+            /* SHARE */
+
+            const shareButton =
+                createActionButton(
+                    "SHARE"
+                );
+
+
+            shareButton.addEventListener(
+                "click",
+                function() {
+
+                    sharePdf(
+                        pdf
+                    );
+
+                }
+            );
+
+
+            /* DELETE */
+
+            const deleteButton =
+                createActionButton(
+                    "DELETE"
+                );
+
+
+            deleteButton.addEventListener(
+                "click",
+                function() {
+
+                    deleteTarget =
+                        pdf.id;
+
+
+                    openPinModal(
+                        "delete"
+                    );
+
+                }
+            );
+
+
+            actions.appendChild(
+                openButton
+            );
+
+
+            actions.appendChild(
+                downloadButton
+            );
+
+
+            actions.appendChild(
+                shareButton
+            );
+
+
+            actions.appendChild(
+                deleteButton
+            );
+
+
+            wrapper.appendChild(
+                item
+            );
+
+
+            wrapper.appendChild(
+                actions
+            );
+
+
+            dots.addEventListener(
+                "click",
+                function(event) {
+
+                    event.stopPropagation();
+
+
+                    /*
+                       Close other open menus.
+                    */
+
+                    document
+                        .querySelectorAll(
+                            ".pdf-actions.show"
+                        )
+                        .forEach(
+                            function(other) {
+
+                                if (
+                                    other !== actions
+                                ) {
+
+                                    other.classList.remove(
+                                        "show"
+                                    );
+
+                                }
+
+                            }
+                        );
+
+
+                    actions.classList.toggle(
+                        "show"
+                    );
+
+                }
+            );
+
+
+            pdfList.appendChild(
+                wrapper
+            );
+
+        }
+
+
+        /* =====================================================
+           EMPTY MESSAGE
+        ===================================================== */
+
+        function createEmptyMessage() {
+
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+
+            div.className =
+                "empty-message";
+
+
+            div.textContent =
+                "No PDF available for the selected Board, Class, Subject and Book.";
+
+
+            return div;
+
+        }
+
+
+        /* =====================================================
+           ACTION BUTTON
+        ===================================================== */
+
+        function createActionButton(text) {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.type =
+                "button";
+
+
+            button.className =
+                "action-button";
+
+
+            button.textContent =
+                text;
+
+
+            return button;
+
+        }
+
+
+        /* =====================================================
+           OPEN PDF
+        ===================================================== */
+
+        function openPdf(pdf) {
+
+            if (
+                !pdf.data
+            ) {
+
+                alert(
+                    "This PDF file is not available."
+                );
+
+
+                return;
+
+            }
+
+
+            try {
+
+                const parts =
+                    pdf.data.split(",");
+
+
+                if (
+                    parts.length < 2
+                ) {
+
+                    throw new Error(
+                        "Invalid PDF data"
+                    );
+
+                }
+
+
+                const byteCharacters =
+                    atob(
+                        parts[1]
+                    );
+
+
+                const byteNumbers =
+                    new Array(
+                        byteCharacters.length
+                    );
+
+
+                for (
+                    let i = 0;
+                    i < byteCharacters.length;
+                    i++
+                ) {
+
+                    byteNumbers[i] =
+                        byteCharacters.charCodeAt(i);
+
+                }
+
+
+                const byteArray =
+                    new Uint8Array(
+                        byteNumbers
+                    );
+
+
+                const blob =
+                    new Blob(
+                        [byteArray],
+                        {
+                            type:
+                                "application/pdf"
+                        }
+                    );
+
+
+                const url =
+                    URL.createObjectURL(
+                        blob
+                    );
+
+
+                window.open(
+                    url,
+                    "_blank"
+                );
+
+
+                setTimeout(
+                    function() {
+
+                        URL.revokeObjectURL(
+                            url
+                        );
+
+                    },
+                    60000
+                );
+
+            } catch (error) {
+
+                alert(
+                    "Unable to open this PDF."
+                );
+
+            }
+
+        }
+
+
+        /* =====================================================
+           DOWNLOAD PDF
+        ===================================================== */
+
+        function downloadPdf(pdf) {
+
+            if (
+                !pdf.data
+            ) {
+
+                alert(
+                    "This PDF file is not available."
+                );
+
+
+                return;
+
+            }
+
+
+            const link =
+                document.createElement(
+                    "a"
+                );
+
+
+            link.href =
+                pdf.data;
+
+
+            link.download =
+                pdf.name ||
+                "school-book.pdf";
+
+
+            document.body.appendChild(
+                link
+            );
+
+
+            link.click();
+
+
+            link.remove();
+
+        }
+
+
+        /* =====================================================
+           SHARE PDF
+        ===================================================== */
+
+        async function sharePdf(pdf) {
+
+            try {
+
+                if (
+                    !pdf.data
+                ) {
+
+                    throw new Error(
+                        "PDF data missing"
+                    );
+
+                }
+
+
+                const response =
+                    await fetch(
+                        pdf.data
+                    );
+
+
+                const blob =
+                    await response.blob();
+
+
+                const file =
+                    new File(
+                        [blob],
+                        pdf.name,
+                        {
+                            type:
+                                "application/pdf"
+                        }
+                    );
+
+
+                if (
+                    navigator.share &&
+                    navigator.canShare &&
+                    navigator.canShare({
+                        files: [file]
+                    })
+                ) {
+
+                    await navigator.share({
+
+                        title:
+                            pdf.name,
+
+                        text:
+                            "School PDF Library",
+
+                        files:
+                            [file]
+
+                    });
+
+
+                } else {
+
+                    alert(
+                        "Sharing is not supported by this browser."
+                    );
+
+                }
+
+            } catch (error) {
+
+                if (
+                    error.name !==
+                    "AbortError"
+                ) {
+
+                    alert(
+                        "Unable to share this PDF."
+                    );
+
+                }
+
+            }
+
+        }
+
+
+        /* =====================================================
+           DELETE PDF
+        ===================================================== */
+
+        function deletePdf(id) {
+
+            const pdfs =
+                getPdfs();
+
+
+            const updatedPdfs =
+                pdfs.filter(
+                    function(pdf) {
+
+                        return (
+                            String(pdf.id) !==
+                            String(id)
+                        );
+
+                    }
+                );
+
+
+            try {
+
+                localStorage.setItem(
+                    PDF_STORAGE_KEY,
+                    JSON.stringify(
+                        updatedPdfs
+                    )
+                );
+
+
+                renderPdfs();
+
+
+                showToast(
+                    "PDF deleted successfully."
+                );
+
+            } catch (error) {
+
+                alert(
+                    "Unable to delete this PDF."
+                );
+
+            }
+
+        }
+
+
+        /* =====================================================
+           INITIAL LOAD
+        ===================================================== */
+
+        renderPdfs();
+
+
+    </script>
+
+
+</body>
+
+</html>

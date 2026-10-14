@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#1f2937"
+    >
+
+    <title>SCHOOL BOOKS LIBRARY</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
+<body>
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <header class="navbar">
+
+        <!-- LEFT : VIDYA BHARATI LOGO -->
+        <div class="nav-left">
+
+            <img
+                src="vidya-bharati-logo.png"
+                alt="Vidya Bharati Logo"
+                class="nav-logo"
+            >
+
+        </div>
+
+
+        <!-- CENTER : WEBSITE NAME -->
+        <div class="nav-title">
+            SCHOOL BOOKS LIBRARY
+        </div>
+
+
+        <!-- DESKTOP NAVIGATION -->
+        <nav
+            class="desktop-nav"
+            aria-label="Main Navigation"
+        >
+
+            <a
+                href="index.html"
+                class="active"
+            >
+                HOME
+            </a>
+
+            <a href="about.html">
+                ABOUT
+            </a>
+
+            <a href="login.html">
+                LOGIN
+            </a>
+
+        </nav>
+
+
+        <!-- HAMBURGER MENU -->
+        <button
+            type="button"
+            class="menu-button"
+            id="menuButton"
+            aria-label="Open Menu"
+            aria-expanded="false"
+        >
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         SIDE MENU
+    ====================================================== -->
+
+    <aside
+        class="side-menu"
+        id="sideMenu"
+        aria-label="Menu"
+    >
+
+        <div class="side-menu-links">
+
+            <a href="index.html">
+                HOME
+            </a>
+
+            <a href="about.html">
+                ABOUT
+            </a>
+
+            <a href="login.html">
+                LOGIN
+            </a>
+
+            <a href="#"
+                id="downloadedPDFsLink"
+                data-page="downloaded-pdfs">
+                DOWNLOADED PDFS
+            </a>
+
+        </div>
+
+
+        <div class="menu-divider"></div>
+
+
+        <!-- DARK MODE -->
+        <div class="theme-row">
+
+            <span class="theme-label">
+                DARK MODE
+            </span>
+
+            <button
+                type="button"
+                class="theme-toggle"
+                id="themeToggle"
+                aria-label="Toggle Dark Mode"
+                aria-pressed="false"
+            >
+
+                <span class="toggle-circle"></span>
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main>
+
+        <section class="home-section">
+
+
+            <!-- =================================================
+                 SCHOOL IMAGE
+            ================================================== -->
+
+            <div class="school-image-container">
+
+                <img
+                    src="school-building.jpg"
+                    alt="School Building"
+                    class="school-image"
+                >
+
+            </div>
+
+
+
+            <!-- =================================================
+                 SCHOOL NAME
+            ================================================== -->
+
+            <div class="school-name">
+
+                LALA JAGDISH PRASAD SARASWATI
+                VIDYA MANDIR SENIOR SECONDARY         SCHOOL
+              
+
+            </div>
+
+
+
+            <!-- =================================================
+                 SELECTION AREA
+            ================================================== -->
+
+            <section class="selection-area">
+
+
+                <!-- FOUR SELECTION BOXES -->
+                <div class="selection-grid">
+
+
+                    <!-- =========================================
+                         SELECT BOARD
+                    ========================================== -->
+
+                    <div class="select-card board-card">
+
+                        <label
+                            for="boardSelect"
+                        >
+                            SELECT BOARD
+                        </label>
+
+                        <select
+                            id="boardSelect"
+                            aria-label="Select Board"
+                        >
+
+                            <option
+                                value=""
+                                selected
+                                disabled
+                            >
+                                Select Board
+                            </option>
+
+                            <option value="CBSE Board">
+                                CBSE Board
+                            </option>
+
+                            <option value="UP Board">
+                                UP Board
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- =========================================
+                         SELECT CLASS
+                    ========================================== -->
+
+                    <div class="select-card class-card">
+
+                        <label
+                            for="classSelect"
+                        >
+                            SELECT CLASS
+                        </label>
+
+                        <select
+                            id="classSelect"
+                            aria-label="Select Class"
+                        >
+
+                            <option
+                                value=""
+                                selected
+                                disabled
+                            >
+                                Select Class
+                            </option>
+
+                            <option value="9">
+                                9th
+                            </option>
+
+                            <option value="10">
+                                10th
+                            </option>
+
+                            <option value="11">
+                                11th
+                            </option>
+
+                            <option value="12">
+                                12th
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- =========================================
+                         SELECT SUBJECT
+                    ========================================== -->
+
+                    <div class="select-card subject-card">
+
+                        <label
+                            for="subjectSelect"
+                        >
+                            SELECT SUBJECT
+                        </label>
+
+                        <select
+                            id="subjectSelect"
+                            aria-label="Select Subject"
+                        >
+
+                            <option
+                                value=""
+                                selected
+                                disabled
+                            >
+                                Select Subject
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- =========================================
+                         SELECT BOOK
+                    ========================================== -->
+
+                    <div class="select-card book-card">
+
+                        <label
+                            for="bookSelect"
+                        >
+                            SELECT BOOK
+                        </label>
+
+                        <select
+                            id="bookSelect"
+                            aria-label="Select Book"
+                        >
+
+                            <option
+                                value=""
+                                selected
+                                disabled
+                            >
+                                Select Book
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                     OPEN BOOK PDF BUTTON
+                ================================================== -->
+
+                <button
+                    type="button"
+                    class="open-pdf-button"
+                    id="openPdfButton"
+                >
+                    OPEN BOOK PDF
+                </button>
+
+
+
+                <!-- =================================================
+                     ADD SUBJECT & BOOK BUTTON
+                ================================================== -->
+
+                <button
+                    type="button"
+                    class="add-subject-button"
+                    id="addSubjectButton"
+                >
+                    ADD SUBJECT &amp; BOOK
+                </button>
+
+
+            </section>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="site-footer">
+
+        <div class="footer-content">
+
+
+            <!-- =================================================
+                 SCHOOL IDENTITY
+            ================================================== -->
+
+            <div class="footer-school">
+
+                <img
+                    src="vidya-bharati-logo.png"
+                    alt="Vidya Bharati Logo"
+                    class="footer-logo"
+                >
+
+
+                <div class="footer-school-info">
+
+                    <h2>
+                        LALA JAGDISH PRASAD SARASWATI
+                        VIDYA MANDIR SENIOR SECONDARY SCHOOL 
+                    </h2>
+
+
+                    <p class="footer-location">
+                        JANSATH ROAD, MUZAFFARNAGAR
+                    </p>
+
+
+                    <div class="footer-line"></div>
+
+
+                    <p class="footer-description">
+                        This site is a school books PDF library
+                        for classes 9 to 12.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 FOOTER FEATURE BOXES
+            ================================================== -->
+
+            <div class="footer-features">
+
+
+                <!-- FAST & RELIABLE -->
+                <div class="feature-card fast-card">
+
+                    <div class="feature-icon">
+                        ⚡
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Fast &amp; Reliable
+                        </strong>
+
+                        <span>
+                            Instant results, no waiting
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- WORKS ON ALL DEVICES -->
+                <div class="feature-card device-card">
+
+                    <div class="feature-icon">
+                        ▣
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Works on All Devices
+                        </strong>
+
+                        <span>
+                            Mobile, Tablet &amp; Desktop
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- SAFE & SECURE -->
+                <div class="feature-card safe-card">
+
+                    <div class="feature-icon">
+                        🛡
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            100% Safe &amp; Secure
+                        </strong>
+
+                        <span>
+                            Your data is always protected
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 FOOTER BOTTOM
+            ================================================== -->
+
+            <div class="footer-bottom">
+
+
+                <div class="copyright">
+                    © 2026 SCHOOL BOOKS LIBRARY
+                </div>
+
+
+                <div class="developer">
+                    &lt;/&gt;&nbsp;
+                    Developed by
+                    <strong>Shiva</strong>
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         MENU OVERLAY
+    ====================================================== -->
+
+    <div
+        class="menu-overlay"
+        id="menuOverlay"
+        aria-hidden="true"
+    ></div>
+
+
+
+    <!-- =====================================================
+         MAIN JAVASCRIPT
+    ====================================================== -->
+
+    <script src="script.js"></script>
+
+</body>
+</html>

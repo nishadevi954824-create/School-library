@@ -1,0 +1,1550 @@
+/* =========================================================
+   SCHOOL BOOKS LIBRARY
+   MAIN WEBSITE STYLESHEET
+========================================================= */
+
+
+/* =========================================================
+   GLOBAL RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f8fc;
+    color: #172033;
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   LINKS / BUTTONS
+========================================================= */
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+select,
+a {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 76px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 28px;
+
+    background: linear-gradient(
+        135deg,
+        #ffffff 0%,
+        #f1f5f9 50%,
+        #e8eef5 100%
+    );
+
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+
+    box-shadow:
+        0 4px 18px rgba(15, 23, 42, 0.12);
+
+    z-index: 1000;
+}
+
+
+/* =========================================================
+   NAV LEFT / LOGO
+========================================================= */
+
+.nav-left {
+    width: 58px;
+    height: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+}
+
+.nav-logo {
+    width: 51px;
+    height: 51px;
+
+    object-fit: contain;
+
+    display: block;
+
+    border-radius: 50%;
+}
+
+
+/* =========================================================
+   NAV TITLE
+========================================================= */
+
+.nav-title {
+    margin-left: 14px;
+
+    font-size: 22px;
+    font-weight: 800;
+
+    letter-spacing: 0.4px;
+
+    color: #172033;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   DESKTOP NAVIGATION
+========================================================= */
+
+.desktop-nav {
+    margin-left: auto;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.desktop-nav a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 42px;
+
+    padding: 0 17px;
+
+    border-radius: 11px;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    color: #263244;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.desktop-nav a:hover {
+    color: #ffffff;
+
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #4f46e5
+    );
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 5px 14px rgba(37, 99, 235, 0.25);
+}
+
+.desktop-nav a:active {
+    transform: scale(0.97);
+}
+
+.desktop-nav a.active {
+    color: #ffffff;
+
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #4f46e5
+    );
+
+    box-shadow:
+        0 5px 14px rgba(37, 99, 235, 0.22);
+}
+
+
+/* =========================================================
+   HAMBURGER MENU BUTTON
+========================================================= */
+
+.menu-button {
+    width: 48px;
+    height: 48px;
+
+    margin-left: 12px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: transparent;
+
+    display: none;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.menu-button span {
+    width: 28px;
+    height: 3px;
+
+    border-radius: 20px;
+
+    background: #263244;
+
+    transition:
+        transform 0.25s ease,
+        opacity 0.25s ease;
+}
+
+.menu-button:hover {
+    background: rgba(37, 99, 235, 0.08);
+}
+
+.menu-button:active {
+    transform: scale(0.94);
+}
+
+
+/* =========================================================
+   SIDE MENU
+========================================================= */
+
+.side-menu {
+    position: fixed;
+
+    top: 76px;
+    right: -330px;
+
+    width: 310px;
+    max-width: 88vw;
+
+    min-height: calc(100vh - 76px);
+
+    padding: 25px 20px;
+
+    background: #ffffff;
+
+    box-shadow:
+        -8px 0 30px rgba(15, 23, 42, 0.18);
+
+    z-index: 999;
+
+    transition: right 0.28s ease;
+
+    overflow-y: auto;
+}
+
+.side-menu.open {
+    right: 0;
+}
+
+.side-menu-links {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.side-menu-links a {
+    padding: 15px 17px;
+
+    border-radius: 12px;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    color: #263244;
+
+    background: #f5f7fa;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.side-menu-links a:hover {
+    color: #ffffff;
+
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #4f46e5
+    );
+
+    transform: translateX(3px);
+}
+
+.side-menu-links a:active {
+    transform: scale(0.98);
+}
+
+.menu-divider {
+    height: 1px;
+
+    margin: 24px 0;
+
+    background: #dce2e8;
+}
+
+
+/* =========================================================
+   THEME ROW
+========================================================= */
+
+.theme-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 12px 6px;
+}
+
+.theme-label {
+    font-size: 15px;
+    font-weight: 700;
+    color: #374151;
+}
+
+.theme-toggle {
+    width: 54px;
+    height: 30px;
+
+    padding: 3px;
+
+    border: none;
+    border-radius: 30px;
+
+    background: #cbd5e1;
+
+    transition: background 0.25s ease;
+}
+
+.toggle-circle {
+    display: block;
+
+    width: 24px;
+    height: 24px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 2px 5px rgba(0, 0, 0, 0.18);
+
+    transition: transform 0.25s ease;
+}
+
+.theme-toggle.active {
+    background: #2563eb;
+}
+
+.theme-toggle.active .toggle-circle {
+    transform: translateX(24px);
+}
+
+
+/* =========================================================
+   MENU OVERLAY
+========================================================= */
+
+.menu-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(15, 23, 42, 0.35);
+
+    opacity: 0;
+    visibility: hidden;
+
+    z-index: 998;
+
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
+}
+
+.menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+main {
+    width: 100%;
+
+    padding-top: 76px;
+}
+
+.home-section {
+    width: 100%;
+    max-width: 1150px;
+
+    margin: 0 auto;
+
+    padding: 35px 25px 55px;
+}
+
+
+/* =========================================================
+   SCHOOL IMAGE
+========================================================= */
+
+.school-image-container {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+
+    margin-bottom: 25px;
+}
+
+.school-image {
+    width: 100%;
+    max-width: 850px;
+
+    height: auto;
+
+    display: block;
+
+    object-fit: cover;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 12px 30px rgba(15, 23, 42, 0.16);
+}
+
+
+/* =========================================================
+   SCHOOL NAME
+========================================================= */
+
+.school-name {
+    max-width: 900px;
+
+    margin: 0 auto 32px;
+
+    text-align: center;
+
+    font-size: 28px;
+    line-height: 1.35;
+
+    font-weight: 800;
+
+    color: #172033;
+}
+
+
+/* =========================================================
+   SELECTION AREA
+========================================================= */
+
+.selection-area {
+    width: 100%;
+    max-width: 850px;
+
+    margin: 0 auto;
+
+    padding: 10px 0;
+}
+
+
+/* =========================================================
+   FOUR SELECTION BOXES
+========================================================= */
+
+.selection-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================================================
+   SELECT CARD
+========================================================= */
+
+.select-card {
+    position: relative;
+
+    min-height: 115px;
+
+    border-radius: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 8px 20px rgba(15, 23, 42, 0.14);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
+    border: none;
+}
+
+.select-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 26px rgba(15, 23, 42, 0.18);
+}
+
+.select-card:active {
+    transform: scale(0.98);
+}
+
+
+/* =========================================================
+   IMPORTANT:
+   SELECT IS INVISIBLE OVER THE COLOURED BUTTON.
+   USER SEES THE CENTER TEXT.
+========================================================= */
+
+.select-card select {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    opacity: 0;
+
+    cursor: pointer;
+
+    z-index: 3;
+}
+
+.select-card label {
+    position: relative;
+
+    z-index: 1;
+
+    pointer-events: none;
+
+    text-align: center;
+
+    font-size: 21px;
+    font-weight: 800;
+
+    color: #ffffff;
+
+    letter-spacing: 0.2px;
+
+    text-transform: uppercase;
+
+    text-shadow:
+        0 2px 5px rgba(0, 0, 0, 0.18);
+}
+
+
+/* =========================================================
+   BOARD - RED
+========================================================= */
+
+.board-card {
+    background: linear-gradient(
+        135deg,
+        #ef4444 0%,
+        #dc2626 48%,
+        #b91c1c 100%
+    );
+}
+
+
+/* =========================================================
+   CLASS - BLUE
+========================================================= */
+
+.class-card {
+    background: linear-gradient(
+        135deg,
+        #3b82f6 0%,
+        #2563eb 48%,
+        #1d4ed8 100%
+    );
+}
+
+
+/* =========================================================
+   SUBJECT - GREEN
+========================================================= */
+
+.subject-card {
+    background: linear-gradient(
+        135deg,
+        #22c55e 0%,
+        #16a34a 48%,
+        #15803d 100%
+    );
+}
+
+
+/* =========================================================
+   BOOK - YELLOW
+========================================================= */
+
+.book-card {
+    background: linear-gradient(
+        135deg,
+        #facc15 0%,
+        #eab308 48%,
+        #ca8a04 100%
+    );
+}
+
+.book-card label {
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   OPEN BOOK PDF BUTTON
+========================================================= */
+
+.open-pdf-button {
+    position: relative;
+
+    width: 100%;
+
+    min-height: 62px;
+
+    margin-bottom: 17px;
+
+    border: none;
+    border-radius: 16px;
+
+    background: linear-gradient(
+        135deg,
+        #fb923c 0%,
+        #f97316 48%,
+        #ea580c 100%
+    );
+
+    color: #ffffff;
+
+    font-size: 19px;
+    font-weight: 800;
+
+    letter-spacing: 0.4px;
+
+    box-shadow:
+        0 8px 18px rgba(234, 88, 12, 0.28);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
+}
+
+.open-pdf-button:hover {
+    filter: brightness(1.05);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 24px rgba(234, 88, 12, 0.34);
+}
+
+.open-pdf-button:active {
+    transform: scale(0.98);
+}
+
+
+/* =========================================================
+   ADD SUBJECT & BOOK
+========================================================= */
+
+.add-subject-button {
+    width: 100%;
+
+    min-height: 62px;
+
+    border: none;
+    border-radius: 16px;
+
+    background: linear-gradient(
+        135deg,
+        #60a5fa 0%,
+        #2563eb 48%,
+        #1d4ed8 100%
+    );
+
+    color: #ffffff;
+
+    font-size: 18px;
+    font-weight: 800;
+
+    letter-spacing: 0.2px;
+
+    box-shadow:
+        0 8px 18px rgba(37, 99, 235, 0.27);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
+}
+
+.add-subject-button:hover {
+    filter: brightness(1.06);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 24px rgba(37, 99, 235, 0.34);
+}
+
+.add-subject-button:active {
+    transform: scale(0.98);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.site-footer {
+    width: 100%;
+
+    margin-top: 20px;
+
+    color: #ffffff;
+
+    background: #060B1F;
+
+    box-shadow:
+        0 -8px 30px rgba(15, 23, 42, 0.14);
+}
+
+.footer-content {
+    width: 100%;
+    max-width: 1150px;
+
+    margin: 0 auto;
+
+    padding: 55px 30px 28px;
+}
+
+
+/* =========================================================
+   FOOTER SCHOOL SECTION
+========================================================= */
+
+.footer-school {
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+    margin-bottom: 40px;
+}
+
+.footer-logo {
+    width: 105px;
+    height: 105px;
+
+    flex-shrink: 0;
+
+    object-fit: contain;
+
+    background: #ffffff;
+
+    padding: 6px;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 5px 16px rgba(0, 0, 0, 0.2);
+}
+
+.footer-school-info {
+    flex: 1;
+}
+
+.footer-school-info h2 {
+    margin-bottom: 8px;
+
+    font-size: 23px;
+    line-height: 1.4;
+
+    font-weight: 800;
+
+    color: #ffffff;
+}
+
+.footer-location {
+    margin-bottom: 15px;
+
+    font-size: 16px;
+
+    color: #dbeafe;
+
+    font-weight: 600;
+}
+
+.footer-line {
+    width: 100%;
+    height: 1px;
+
+    margin: 15px 0;
+
+    background: rgba(255, 255, 255, 0.24);
+}
+
+.footer-description {
+    max-width: 750px;
+
+    font-size: 16px;
+
+    line-height: 1.7;
+
+    color: #dbe4f0;
+}
+
+
+/* =========================================================
+   FOOTER FEATURE BOXES
+========================================================= */
+
+.footer-features {
+    display: grid;
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 18px;
+
+    margin-bottom: 40px;
+}
+
+.feature-card {
+    min-height: 95px;
+
+    padding: 20px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 16px;
+
+    border-radius: 16px;
+
+    background: rgba(255, 255, 255, 0.10);
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-3px);
+
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.feature-icon {
+    width: 46px;
+    height: 46px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: rgba(255, 255, 255, 0.16);
+
+    font-size: 23px;
+}
+
+.feature-card strong {
+    display: block;
+
+    margin-bottom: 5px;
+
+    font-size: 17px;
+
+    color: #ffffff;
+}
+
+.feature-card span {
+    display: block;
+
+    font-size: 13px;
+
+    line-height: 1.4;
+
+    color: #dbeafe;
+}
+
+
+/* =========================================================
+   FOOTER BOTTOM
+========================================================= */
+
+.footer-bottom {
+    padding-top: 25px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+
+    text-align: center;
+}
+
+.copyright {
+    font-size: 15px;
+
+    color: #dbe4f0;
+
+    margin-bottom: 12px;
+}
+
+.developer {
+    font-size: 15px;
+    color: #ffffff;
+}
+
+.developer strong {
+    font-size: 15px;
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   DESKTOP
+   HOME CONTENT LAYOUT
+   - Navbar remains unchanged
+   - HOME / ABOUT / LOGIN remain visible
+   - Hamburger menu remains visible after the three links
+   - School image stays on the left and is centered vertically
+   - School name + selection boxes + action buttons stay on the right
+   - Footer remains below the complete home section
+========================================================= */
+
+@media (min-width: 901px) {
+
+    /* -----------------------------------------
+       DESKTOP NAVIGATION
+    ----------------------------------------- */
+
+    .desktop-nav {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-left: auto;
+        flex-shrink: 0;
+    }
+
+    .menu-button {
+        display: flex;
+        flex-shrink: 0;
+        margin-left: 12px;
+    }
+
+    /* -----------------------------------------
+       HOME DESKTOP LAYOUT
+    ----------------------------------------- */
+
+    .home-section {
+        display: grid;
+        grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+        column-gap: 42px;
+        align-items: center;
+    }
+
+    /* -----------------------------------------
+       SCHOOL IMAGE - LEFT / CENTERED
+    ----------------------------------------- */
+
+    .school-image-container {
+        grid-column: 1;
+        grid-row: 1 / span 2;
+
+        width: 100%;
+        height: 100%;
+        margin-bottom: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .school-image {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+
+        display: block;
+    }
+
+    /* -----------------------------------------
+       SCHOOL NAME - RIGHT / TOP
+    ----------------------------------------- */
+
+    .school-name {
+        grid-column: 2;
+        grid-row: 1;
+
+        width: 100%;
+        max-width: none;
+
+        margin: 0 0 24px;
+
+        text-align: center;
+        font-size: 27px;
+        line-height: 1.35;
+    }
+
+    /* -----------------------------------------
+       SELECTION AREA - RIGHT / BELOW NAME
+    ----------------------------------------- */
+
+    .selection-area {
+        grid-column: 2;
+        grid-row: 2;
+
+        width: 100%;
+        max-width: none;
+
+        margin: 0;
+        padding: 0;
+    }
+
+    .selection-grid {
+        width: 100%;
+    }
+
+    .open-pdf-button,
+    .add-subject-button {
+        width: 100%;
+    }
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .navbar {
+        height: 70px;
+
+        padding: 0 20px;
+    }
+
+    main {
+        padding-top: 70px;
+    }
+
+    .desktop-nav {
+        display: none;
+    }
+
+    .menu-button {
+        display: flex;
+
+        margin-left: auto;
+    }
+
+    .nav-left {
+        width: 52px;
+        height: 52px;
+    }
+
+    .nav-logo {
+        width: 48px;
+        height: 48px;
+    }
+
+    .nav-title {
+        font-size: 19px;
+        margin-left: 10px;
+    }
+
+    .side-menu {
+        top: 70px;
+
+        min-height: calc(100vh - 70px);
+    }
+
+    .home-section {
+        padding: 30px 20px 45px;
+    }
+
+    .school-name {
+        font-size: 25px;
+    }
+
+    .footer-school-info h2 {
+        font-size: 21px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    body {
+        background: #f4f8fc;
+    }
+
+
+    /* -----------------------------------------
+       NAVBAR
+    ----------------------------------------- */
+
+    .navbar {
+        height: 68px;
+
+        padding: 0 12px;
+    }
+
+    main {
+        padding-top: 68px;
+    }
+
+    .nav-left {
+        width: 52px;
+        height: 52px;
+    }
+
+    .nav-logo {
+        width: 47px;
+        height: 47px;
+    }
+
+    .nav-title {
+        flex: 1;
+
+        margin-left: 8px;
+
+        text-align: center;
+
+        font-size: 16px;
+
+        letter-spacing: 0.2px;
+    }
+
+    .menu-button {
+        width: 45px;
+        height: 45px;
+
+        margin-left: 4px;
+    }
+
+    .menu-button span {
+        width: 27px;
+        height: 3px;
+    }
+
+
+    /* -----------------------------------------
+       SIDE MENU
+    ----------------------------------------- */
+
+    .side-menu {
+        top: 68px;
+
+        width: 290px;
+        max-width: 84vw;
+
+        min-height: calc(100vh - 68px);
+
+        padding: 20px 16px;
+    }
+
+
+    /* -----------------------------------------
+       HOME
+    ----------------------------------------- */
+
+    .home-section {
+        padding: 20px 15px 40px;
+    }
+
+
+    /* -----------------------------------------
+       SCHOOL IMAGE
+    ----------------------------------------- */
+
+    .school-image-container {
+        margin-bottom: 18px;
+    }
+
+    .school-image {
+        border-radius: 13px;
+
+        width: 100%;
+    }
+
+
+    /* -----------------------------------------
+       SCHOOL NAME
+    ----------------------------------------- */
+
+    .school-name {
+        margin-bottom: 24px;
+
+        font-size: 21px;
+
+        line-height: 1.4;
+    }
+
+
+    /* -----------------------------------------
+       SELECTION GRID
+    ----------------------------------------- */
+
+    .selection-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        gap: 12px;
+
+        margin-bottom: 18px;
+    }
+
+
+    /* -----------------------------------------
+       SELECT BOXES
+    ----------------------------------------- */
+
+    .select-card {
+        min-height: 104px;
+
+        border-radius: 17px;
+    }
+
+    .select-card label {
+        padding: 8px;
+
+        font-size: 15px;
+
+        line-height: 1.25;
+    }
+
+
+    /* -----------------------------------------
+       MAIN BUTTONS
+    ----------------------------------------- */
+
+    .open-pdf-button,
+    .add-subject-button {
+        min-height: 57px;
+
+        border-radius: 14px;
+
+        font-size: 16px;
+    }
+
+
+    /* -----------------------------------------
+       FOOTER
+    ----------------------------------------- */
+
+    .site-footer {
+        margin-top: 0;
+    }
+
+    .footer-content {
+        padding: 40px 20px 24px;
+    }
+
+
+    /* -----------------------------------------
+       FOOTER SCHOOL
+       CENTER ON MOBILE
+    ----------------------------------------- */
+
+    .footer-school {
+        flex-direction: column;
+
+        text-align: center;
+
+        gap: 18px;
+
+        margin-bottom: 30px;
+    }
+
+    .footer-logo {
+        width: 92px;
+        height: 92px;
+    }
+
+    .footer-school-info {
+        width: 100%;
+    }
+
+    .footer-school-info h2 {
+        font-size: 19px;
+
+        line-height: 1.45;
+    }
+
+    .footer-location {
+        font-size: 14px;
+    }
+
+    .footer-description {
+        font-size: 14px;
+
+        line-height: 1.6;
+    }
+
+
+    /* -----------------------------------------
+       THREE FOOTER BOXES
+       ONE BELOW ANOTHER
+    ----------------------------------------- */
+
+    .footer-features {
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 13px;
+
+        margin-bottom: 30px;
+    }
+
+    .feature-card {
+        width: 100%;
+
+        min-height: 82px;
+
+        padding: 17px;
+
+        border-radius: 14px;
+    }
+
+    .feature-icon {
+        width: 42px;
+        height: 42px;
+
+        font-size: 20px;
+    }
+
+    .feature-card strong {
+        font-size: 15px;
+    }
+
+    .feature-card span {
+        font-size: 12px;
+    }
+
+
+    /* -----------------------------------------
+       FOOTER BOTTOM
+    ----------------------------------------- */
+
+    .footer-bottom {
+        padding-top: 21px;
+    }
+
+    .copyright {
+        font-size: 13px;
+
+        margin-bottom: 10px;
+    }
+
+    .developer {
+        font-size: 15px;
+    }
+
+    .developer strong {
+        font-size: 15px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .navbar {
+        padding: 0 8px;
+    }
+
+    .nav-logo {
+        width: 44px;
+        height: 44px;
+    }
+
+    .nav-title {
+        font-size: 14px;
+    }
+
+    .menu-button {
+        width: 42px;
+        height: 42px;
+    }
+
+    .school-name {
+        font-size: 19px;
+    }
+
+    .select-card {
+        min-height: 96px;
+    }
+
+    .select-card label {
+        font-size: 14px;
+    }
+
+    .open-pdf-button,
+    .add-subject-button {
+        font-size: 15px;
+    }
+
+}
+
+
+/* =========================================================
+   DARK MODE SUPPORT
+========================================================= */
+
+body.dark-mode {
+    background: #0f172a;
+
+    color: #e5e7eb;
+}
+
+body.dark-mode .navbar {
+    background: linear-gradient(
+        135deg,
+        #111827,
+        #1e293b
+    );
+
+    border-bottom-color: rgba(255,255,255,0.10);
+}
+
+body.dark-mode .nav-title {
+    color: #ffffff;
+}
+
+body.dark-mode .menu-button span {
+    background: #ffffff;
+}
+
+body.dark-mode .side-menu {
+    background: #111827;
+}
+
+body.dark-mode .side-menu-links a {
+    background: #1e293b;
+    color: #e5e7eb;
+}
+
+body.dark-mode .theme-label {
+    color: #e5e7eb;
+}
+
+body.dark-mode .school-name {
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+button:focus-visible,
+a:focus-visible,
+select:focus-visible {
+    outline: 3px solid rgba(59, 130, 246, 0.55);
+
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   REDUCE MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+
+}

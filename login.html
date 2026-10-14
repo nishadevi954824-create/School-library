@@ -1,0 +1,2621 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#1f2937"
+    >
+
+    <title>LOGIN - SCHOOL BOOKS LIBRARY</title>
+
+
+    <style>
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+            min-height: 100vh;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background: #f4f8fc;
+
+            color: #172033;
+
+            overflow-x: hidden;
+
+            transition:
+                background-color .25s ease,
+                color .25s ease;
+        }
+
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+        button,
+        input {
+            font: inherit;
+        }
+
+
+        button {
+            cursor: pointer;
+        }
+
+
+        /* =====================================================
+           NAVBAR
+        ===================================================== */
+
+        .navbar {
+
+            position: fixed;
+
+            top: 0;
+            left: 0;
+            right: 0;
+
+            height: 76px;
+
+            z-index: 1000;
+
+            display: flex;
+
+            align-items: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffffff 0%,
+                    #f1f5f9 50%,
+                    #e8eef5 100%
+                );
+
+            border-bottom:
+                1px solid rgba(0, 0, 0, .12);
+
+            box-shadow:
+                0 4px 18px rgba(15, 23, 42, .12);
+
+            padding:
+                0 28px;
+        }
+
+
+        /* =====================================================
+           NAVBAR LEFT
+        ===================================================== */
+
+        .nav-left {
+
+            width: 58px;
+            height: 58px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            flex-shrink: 0;
+        }
+
+
+        /* =====================================================
+           LOGO
+        ===================================================== */
+
+        .nav-logo {
+
+            width: 51px;
+            height: 51px;
+
+            object-fit: contain;
+
+            display: block;
+        }
+
+
+        /* =====================================================
+           NAVBAR TITLE
+        ===================================================== */
+
+        .nav-title {
+
+            margin-left: 14px;
+
+            font-size: 22px;
+
+            font-weight: 800;
+
+            letter-spacing: .4px;
+
+            color: #172033;
+
+            white-space: nowrap;
+        }
+
+
+        /* =====================================================
+           DESKTOP NAVIGATION
+        ===================================================== */
+
+        .desktop-nav {
+
+            margin-left: auto;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+
+        .desktop-nav a {
+
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            min-height: 42px;
+
+            padding:
+                0 17px;
+
+            border-radius: 11px;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            color: #263244;
+
+            transition:
+                background .2s ease,
+                color .2s ease,
+                transform .2s ease;
+        }
+
+
+        .desktop-nav a:hover {
+
+            color: #ffffff;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #4f46e5
+                );
+        }
+
+
+        .desktop-nav a.active {
+
+            color: #ffffff;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #4f46e5
+                );
+        }
+
+
+        .desktop-nav a:active {
+
+            transform:
+                scale(.97);
+        }
+
+
+        /* =====================================================
+           THREE LINE MENU BUTTON
+        ===================================================== */
+
+        .menu-button {
+
+            width: 48px;
+            height: 48px;
+
+            margin-left: 12px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background: transparent;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+            justify-content: center;
+
+            gap: 5px;
+
+            flex-shrink: 0;
+
+            z-index: 1100;
+
+            transition:
+                background .2s ease,
+                transform .2s ease;
+        }
+
+
+        .menu-button span {
+
+            display: block;
+
+            width: 28px;
+            height: 3px;
+
+            border-radius: 20px;
+
+            background: #263244;
+
+            transition:
+                transform .25s ease,
+                opacity .25s ease;
+        }
+
+
+        .menu-button:hover {
+
+            background:
+                rgba(37, 99, 235, .08);
+        }
+
+
+        .menu-button:active {
+
+            transform:
+                scale(.94);
+        }
+
+
+        /* =====================================================
+           SIDE MENU
+        ===================================================== */
+
+        .side-menu {
+
+            position: fixed;
+
+            top: 76px;
+
+            right: -330px;
+
+            width: 310px;
+
+            max-width: 88vw;
+
+            height:
+                calc(100vh - 76px);
+
+            z-index: 1050;
+
+            padding:
+                25px 20px;
+
+            background: #ffffff;
+
+            border-left:
+                1px solid #d5d8db;
+
+            box-shadow:
+                -8px 0 30px
+                rgba(15, 23, 42, .18);
+
+            transition:
+                right .28s ease;
+
+            overflow-y: auto;
+        }
+
+
+        .side-menu.open {
+
+            right: 0;
+        }
+
+
+        /* =====================================================
+           SIDE MENU LINKS
+        ===================================================== */
+
+        .side-menu-links {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 8px;
+        }
+
+
+        .side-menu-links a {
+
+            display: block;
+
+            padding:
+                15px 17px;
+
+            border-radius: 12px;
+
+            background: #f5f7fa;
+
+            color: #263244;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            transition:
+                background .2s ease,
+                color .2s ease,
+                transform .2s ease;
+        }
+
+
+        .side-menu-links a:hover {
+
+            color: #ffffff;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #4f46e5
+                );
+
+            transform:
+                translateX(3px);
+        }
+
+
+        .side-menu-links a:active {
+
+            transform:
+                scale(.98);
+        }
+
+
+        /* =====================================================
+           MENU DIVIDER
+        ===================================================== */
+
+        .menu-divider {
+
+            height: 1px;
+
+            margin:
+                24px 0;
+
+            background: #dce2e8;
+        }
+
+
+        /* =====================================================
+           DARK MODE ROW
+        ===================================================== */
+
+        .theme-row {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding:
+                12px 6px;
+        }
+
+
+        .theme-label {
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            color: #374151;
+        }
+
+
+        .theme-toggle {
+
+            width: 54px;
+            height: 30px;
+
+            padding: 3px;
+
+            border: none;
+
+            border-radius: 30px;
+
+            background: #cbd5e1;
+
+            transition:
+                background .25s ease;
+        }
+
+
+        .theme-toggle::after {
+
+            content: "";
+
+            display: block;
+
+            width: 24px;
+            height: 24px;
+
+            border-radius: 50%;
+
+            background: #ffffff;
+
+            box-shadow:
+                0 2px 5px
+                rgba(0, 0, 0, .18);
+
+            transform:
+                translateX(0);
+
+            transition:
+                transform .25s ease;
+        }
+
+
+        .theme-toggle.active {
+
+            background: #2563eb;
+        }
+
+
+        .theme-toggle.active::after {
+
+            transform:
+                translateX(24px);
+        }
+
+
+        /* =====================================================
+           MENU OVERLAY
+        ===================================================== */
+
+        .menu-overlay {
+
+            position: fixed;
+
+            inset:
+                76px 0 0 0;
+
+            z-index: 1020;
+
+            background:
+                rgba(15, 23, 42, .35);
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transition:
+                opacity .25s ease,
+                visibility .25s ease;
+        }
+
+
+        .menu-overlay.active {
+
+            opacity: 1;
+
+            visibility: visible;
+        }
+
+
+        /* =====================================================
+           LOGIN PAGE
+        ===================================================== */
+
+        .login-page {
+
+            min-height: 100vh;
+
+            padding-top: 76px;
+
+            display: flex;
+
+            flex-direction: column;
+        }
+
+
+        .login-content {
+
+            flex: 1;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding:
+                55px 20px;
+        }
+
+
+        /* =====================================================
+           LOGIN BOX
+        ===================================================== */
+
+        .login-box {
+
+            width: 100%;
+
+            max-width: 390px;
+
+            padding: 30px;
+
+            background: #ffffff;
+
+            border:
+                1px solid #d9dcdf;
+
+            border-radius: 16px;
+
+            box-shadow:
+                0 8px 28px
+                rgba(0, 0, 0, .09);
+        }
+
+
+        .login-title {
+
+            text-align: center;
+
+            margin-bottom: 25px;
+
+            font-size: 24px;
+
+            font-weight: 800;
+
+            letter-spacing: 1px;
+
+            color: #20252b;
+        }
+
+
+        /* =====================================================
+           FORM
+        ===================================================== */
+
+        .login-form {
+
+            width: 100%;
+        }
+
+
+        .form-group {
+
+            margin-bottom: 16px;
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            color: #454b52;
+        }
+
+
+        .form-group input {
+
+            width: 100%;
+
+            height: 45px;
+
+            padding:
+                0 13px;
+
+            border:
+                1px solid #cdd1d5;
+
+            border-radius: 9px;
+
+            outline: none;
+
+            background: #fafbfc;
+
+            color: #20252b;
+
+            font-size: 14px;
+
+            transition:
+                border-color .2s ease,
+                box-shadow .2s ease,
+                background .2s ease;
+        }
+
+
+        .form-group input::placeholder {
+
+            color: #8a9198;
+        }
+
+
+        .form-group input:focus {
+
+            border-color: #6c737b;
+
+            background: #ffffff;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(108, 115, 123, .12);
+        }
+
+
+        /* =====================================================
+           SUBMIT BUTTON
+        ===================================================== */
+
+        .submit-button {
+
+            width: 100%;
+
+            height: 46px;
+
+            margin-top: 5px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: #343a40;
+
+            color: #ffffff;
+
+            font-size: 14px;
+
+            font-weight: 800;
+
+            letter-spacing: .3px;
+
+            transition:
+                transform .15s ease,
+                background .2s ease,
+                box-shadow .2s ease;
+        }
+
+
+        .submit-button:hover {
+
+            background: #20252b;
+
+            box-shadow:
+                0 5px 14px
+                rgba(0, 0, 0, .15);
+        }
+
+
+        .submit-button:active {
+
+            transform:
+                scale(.98);
+        }
+
+
+        .submit-button:disabled {
+
+            opacity: .65;
+
+            cursor: not-allowed;
+
+            transform: none;
+        }
+
+
+        /* =====================================================
+           LOGIN MESSAGE
+        ===================================================== */
+
+        .login-message {
+
+            display: none;
+
+            position: fixed;
+
+            top: 92px;
+
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            width: min(640px, calc(100% - 32px));
+
+            padding: 18px 50px 18px 24px;
+
+            border: 1px solid #d9dcdf;
+
+            border-radius: 16px;
+
+            background: #ffffff;
+
+            text-align: left;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            line-height: 1.5;
+
+            color: #20252b;
+
+            box-shadow: 0 8px 28px rgba(0, 0, 0, .10);
+
+            z-index: 1200;
+        }
+
+
+        .login-message.show {
+
+            display: block;
+        }
+
+
+        .login-message .message-icon {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            width: 30px;
+
+            height: 30px;
+
+            margin-right: 12px;
+
+            border-radius: 50%;
+
+            background: #eef4ff;
+
+            color: #2563eb;
+
+            font-size: 18px;
+
+            font-weight: 800;
+
+            vertical-align: middle;
+        }
+
+
+        .login-message.success .message-icon {
+
+            background: #eef4ff;
+
+            color: #2563eb;
+        }
+
+
+        .login-message.info .message-icon {
+
+            background: #eef4ff;
+
+            color: #2563eb;
+        }
+
+
+        .login-message .message-close {
+
+            position: absolute;
+
+            top: 50%;
+
+            right: 18px;
+
+            transform: translateY(-50%);
+
+            width: 30px;
+
+            height: 30px;
+
+            border: none;
+
+            background: transparent;
+
+            color: #64748b;
+
+            font-size: 27px;
+
+            font-weight: 700;
+
+            line-height: 30px;
+
+            cursor: pointer;
+
+            padding: 0;
+        }
+
+
+        .login-message .message-close:hover {
+
+            color: #20252b;
+        }
+
+
+        /* =====================================================
+           HOME PAGE STYLE FOOTER
+        ===================================================== */
+
+        .site-footer {
+
+            width: 100%;
+
+            background: #e6eef7;
+
+            color: #172033;
+
+            padding:
+                46px 20px 28px;
+        }
+
+
+        .footer-content {
+
+            width: 100%;
+
+            max-width: 1200px;
+
+            margin: 0 auto;
+        }
+
+
+        /* =====================================================
+           SCHOOL IDENTITY
+        ===================================================== */
+
+        .footer-school {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 28px;
+
+            text-align: left;
+        }
+
+
+        .footer-logo {
+
+            width: 95px;
+            height: 95px;
+
+            object-fit: contain;
+
+            flex-shrink: 0;
+        }
+
+
+        .footer-school-info {
+
+            max-width: 720px;
+        }
+
+
+        .footer-school-info h2 {
+
+            font-size: 23px;
+
+            line-height: 1.4;
+
+            font-weight: 800;
+
+            color: #172033;
+        }
+
+
+        .footer-location {
+
+            margin-top: 6px;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            color: #536174;
+        }
+
+
+        .footer-line {
+
+            width: 100%;
+
+            height: 1px;
+
+            margin:
+                15px 0;
+
+            background:
+                rgba(31, 41, 55, .16);
+        }
+
+
+        .footer-description {
+
+            font-size: 15px;
+
+            line-height: 1.6;
+
+            color: #5c697b;
+        }
+
+
+        /* =====================================================
+           FOOTER FEATURE BOXES
+        ===================================================== */
+
+        .footer-features {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+
+            margin-top: 35px;
+        }
+
+
+        .feature-card {
+
+            min-height: 92px;
+
+            padding:
+                18px 20px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+
+            border:
+                1px solid
+                rgba(31, 41, 55, .10);
+
+            border-radius: 14px;
+
+            background: #f8fafc;
+
+            box-shadow:
+                0 4px 12px
+                rgba(31, 41, 55, .05);
+
+            transition:
+                transform .2s ease,
+                box-shadow .2s ease;
+        }
+
+
+        .feature-card:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 8px 20px
+                rgba(31, 41, 55, .08);
+        }
+
+
+        .feature-icon {
+
+            width: 44px;
+            height: 44px;
+
+            flex-shrink: 0;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 12px;
+
+            background: #e8eef7;
+
+            font-size: 22px;
+        }
+
+
+        .feature-card strong {
+
+            display: block;
+
+            font-size: 15px;
+
+            color: #263244;
+        }
+
+
+        .feature-card span {
+
+            display: block;
+
+            margin-top: 5px;
+
+            font-size: 12px;
+
+            line-height: 1.4;
+
+            color: #667386;
+        }
+
+
+        /* =====================================================
+           FOOTER BOTTOM
+        ===================================================== */
+
+        .footer-bottom {
+
+            margin-top: 35px;
+
+            padding-top: 20px;
+
+            border-top:
+                1px solid
+                rgba(31, 41, 55, .15);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            color: #657184;
+
+            font-size: 13px;
+        }
+
+
+        .developer {
+
+            color: #26364d;
+
+            font-size: 15px;
+
+            font-weight: 700;
+        }
+
+
+        /* =====================================================
+           DARK MODE
+        ===================================================== */
+
+        body.dark-mode {
+
+            background: #0f172a;
+
+            color: #e5e7eb;
+        }
+
+
+        body.dark-mode .navbar {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #111827,
+                    #1e293b
+                );
+
+            border-bottom-color:
+                rgba(255, 255, 255, .10);
+        }
+
+
+        body.dark-mode .nav-title {
+
+            color: #ffffff;
+        }
+
+
+        body.dark-mode .menu-button span {
+
+            background: #ffffff;
+        }
+
+
+        body.dark-mode .side-menu {
+
+            background: #111827;
+
+            border-left-color: #334155;
+        }
+
+
+        body.dark-mode .side-menu-links a {
+
+            background: #1e293b;
+
+            color: #e5e7eb;
+        }
+
+
+        body.dark-mode .theme-label {
+
+            color: #e5e7eb;
+        }
+
+
+        body.dark-mode .login-box {
+
+            background: #1e293b;
+
+            border-color: #334155;
+
+            box-shadow:
+                0 8px 28px
+                rgba(0, 0, 0, .25);
+        }
+
+
+        body.dark-mode .login-title {
+
+            color: #ffffff;
+        }
+
+
+        body.dark-mode .form-group label {
+
+            color: #d4d8dc;
+        }
+
+
+        body.dark-mode .form-group input {
+
+            background: #111827;
+
+            border-color: #475569;
+
+            color: #ffffff;
+        }
+
+
+        body.dark-mode .form-group input::placeholder {
+
+            color: #94a3b8;
+        }
+
+
+        body.dark-mode .form-group input:focus {
+
+            background: #172033;
+
+            border-color: #64748b;
+        }
+
+
+        body.dark-mode .submit-button {
+
+            background: #eeeeee;
+
+            color: #20252b;
+        }
+
+
+        body.dark-mode .submit-button:hover {
+
+            background: #ffffff;
+        }
+
+
+        body.dark-mode .login-message {
+
+            background: #1e293b;
+
+            border-color: #334155;
+
+            color: #e2e5e8;
+        }
+
+
+        body.dark-mode .login-message .message-close {
+
+            color: #cbd5e1;
+        }
+
+
+        body.dark-mode .site-footer {
+
+            background: #111827;
+
+            color: #e5e7eb;
+        }
+
+
+        body.dark-mode .footer-school-info h2 {
+
+            color: #ffffff;
+        }
+
+
+        body.dark-mode .footer-location {
+
+            color: #aab4c2;
+        }
+
+
+        body.dark-mode .footer-description {
+
+            color: #aab4c2;
+        }
+
+
+        body.dark-mode .footer-line {
+
+            background:
+                rgba(255, 255, 255, .12);
+        }
+
+
+        body.dark-mode .feature-card {
+
+            background: #1e293b;
+
+            border-color: #334155;
+        }
+
+
+        body.dark-mode .feature-icon {
+
+            background: #273449;
+        }
+
+
+        body.dark-mode .feature-card strong {
+
+            color: #ffffff;
+        }
+
+
+        body.dark-mode .feature-card span {
+
+            color: #aab4c2;
+        }
+
+
+        body.dark-mode .footer-bottom {
+
+            border-top-color: #334155;
+
+            color: #94a3b8;
+        }
+
+
+        body.dark-mode .developer {
+
+            color: #e5e7eb;
+        }
+
+
+        /* =====================================================
+           TABLET
+        ===================================================== */
+
+        @media (max-width: 900px) {
+
+            .desktop-nav {
+
+                display: none;
+            }
+
+
+            .menu-button {
+
+                margin-left: auto;
+            }
+
+
+            .navbar {
+
+                height: 70px;
+
+                padding:
+                    0 20px;
+            }
+
+
+            .side-menu {
+
+                top: 70px;
+
+                height:
+                    calc(100vh - 70px);
+            }
+
+
+            .menu-overlay {
+
+                inset:
+                    70px 0 0 0;
+            }
+
+
+            .login-page {
+
+                padding-top: 70px;
+            }
+
+
+            .footer-features {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .footer-school {
+
+                flex-direction: column;
+
+                text-align: center;
+            }
+
+
+            .footer-school-info {
+
+                max-width: 850px;
+            }
+
+
+            .footer-line {
+
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 600px) {
+
+            .navbar {
+
+                height: 68px;
+
+                padding:
+                    0 12px;
+            }
+
+
+            .nav-left {
+
+                width: 52px;
+                height: 52px;
+            }
+
+
+            .nav-logo {
+
+                width: 47px;
+                height: 47px;
+            }
+
+
+            .nav-title {
+
+                flex: 1;
+
+                margin-left: 8px;
+
+                text-align: center;
+
+                font-size: 16px;
+
+                letter-spacing: .2px;
+            }
+
+
+            .menu-button {
+
+                width: 45px;
+                height: 45px;
+
+                margin-left: 4px;
+            }
+
+
+            .menu-button span {
+
+                width: 27px;
+            }
+
+
+            .side-menu {
+
+                top: 68px;
+
+                width:
+                    min(290px, 84vw);
+
+                height:
+                    calc(100vh - 68px);
+
+                padding:
+                    20px 16px;
+            }
+
+
+            .menu-overlay {
+
+                inset:
+                    68px 0 0 0;
+            }
+
+
+            .login-page {
+
+                padding-top: 68px;
+            }
+
+
+            .login-content {
+
+                padding:
+                    40px 15px;
+            }
+
+
+            .login-box {
+
+                max-width: 370px;
+
+                padding:
+                    25px 20px;
+
+                border-radius: 14px;
+            }
+
+
+            .login-title {
+
+                font-size: 21px;
+
+                margin-bottom: 22px;
+            }
+
+
+            .login-message {
+
+                top: 84px;
+
+                width: calc(100% - 28px);
+
+                padding: 16px 18px;
+
+                font-size: 14px;
+            }
+
+
+            .login-message::before {
+
+                width: 28px;
+
+                height: 28px;
+
+                margin-right: 10px;
+
+                font-size: 17px;
+            }
+
+
+            .site-footer {
+
+                padding:
+                    40px 15px 24px;
+            }
+
+
+            .footer-school {
+
+                gap: 18px;
+            }
+
+
+            .footer-logo {
+
+                width: 80px;
+                height: 80px;
+            }
+
+
+            .footer-school-info h2 {
+
+                font-size: 19px;
+
+                line-height: 1.45;
+            }
+
+
+            .footer-location {
+
+                font-size: 13px;
+            }
+
+
+            .footer-description {
+
+                font-size: 14px;
+            }
+
+
+            .footer-features {
+
+                margin-top: 28px;
+
+                gap: 12px;
+            }
+
+
+            .feature-card {
+
+                min-height: 82px;
+
+                padding:
+                    16px;
+
+                border-radius: 12px;
+            }
+
+
+            .feature-card strong {
+
+                font-size: 14px;
+            }
+
+
+            .feature-card span {
+
+                font-size: 11px;
+            }
+
+
+            .footer-bottom {
+
+                margin-top: 28px;
+
+                padding-top: 18px;
+
+                flex-direction: column;
+
+                text-align: center;
+
+                gap: 8px;
+            }
+
+
+            .developer {
+
+                font-size: 14px;
+            }
+        }
+
+
+        /* =====================================================
+           SMALL MOBILE
+        ===================================================== */
+
+        @media (max-width: 380px) {
+
+            .nav-title {
+
+                font-size: 15px;
+            }
+
+
+            .nav-logo {
+
+                width: 44px;
+                height: 44px;
+            }
+
+
+            .login-box {
+
+                padding:
+                    23px 17px;
+            }
+
+
+            .footer-school-info h2 {
+
+                font-size: 18px;
+            }
+
+
+            .footer-description {
+
+                font-size: 13px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         NAVBAR
+    ===================================================== -->
+
+    <header class="navbar">
+
+
+        <!-- LEFT : VIDYA BHARATI LOGO -->
+
+        <div class="nav-left">
+
+            <a
+                href="index.html"
+                aria-label="Home"
+            >
+
+                <img
+                    src="vidya-bharati-logo.png"
+                    alt="Vidya Bharati Logo"
+                    class="nav-logo"
+                >
+
+            </a>
+
+        </div>
+
+
+        <!-- WEBSITE TITLE -->
+
+        <div class="nav-title">
+
+            SCHOOL BOOKS LIBRARY
+
+        </div>
+
+
+        <!-- DESKTOP NAVIGATION -->
+
+        <nav
+            class="desktop-nav"
+            aria-label="Main Navigation"
+        >
+
+            <a href="index.html">
+
+                HOME
+
+            </a>
+
+
+            <a href="about.html">
+
+                ABOUT
+
+            </a>
+
+
+            <a
+                href="login.html"
+                class="active"
+            >
+
+                LOGIN
+
+            </a>
+
+        </nav>
+
+
+        <!-- HAMBURGER -->
+
+        <button
+            type="button"
+            class="menu-button"
+            id="menuButton"
+            aria-label="Open Menu"
+            aria-expanded="false"
+        >
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         SIDE MENU
+    ===================================================== -->
+
+    <aside
+        class="side-menu"
+        id="sideMenu"
+        aria-label="Menu"
+    >
+
+        <div class="side-menu-links">
+
+
+            <a href="index.html">
+
+                HOME
+
+            </a>
+
+
+            <a href="about.html">
+
+                ABOUT
+
+            </a>
+
+
+            <a href="login.html">
+
+                LOGIN
+
+            </a>
+
+
+            <!-- IMPORTANT:
+                 Does NOT open PDF.html -->
+
+            <a
+                href="#"
+                id="downloadedPDFsLink"
+            >
+
+                DOWNLOADED PDFS
+
+            </a>
+
+
+        </div>
+
+
+        <div class="menu-divider"></div>
+
+
+        <!-- DARK MODE -->
+
+        <div class="theme-row">
+
+            <span class="theme-label">
+
+                DARK MODE
+
+            </span>
+
+
+            <button
+                type="button"
+                class="theme-toggle"
+                id="themeToggle"
+                aria-label="Toggle Dark Mode"
+                aria-pressed="false"
+            ></button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- MENU OVERLAY -->
+
+    <div
+        class="menu-overlay"
+        id="menuOverlay"
+        aria-hidden="true"
+    ></div>
+
+
+    <div
+        class="login-message"
+        id="loginMessage"
+        role="status"
+        aria-live="polite"
+    ></div>
+
+
+
+    <!-- =====================================================
+         LOGIN PAGE
+    ===================================================== -->
+
+    <main class="login-page">
+
+
+        <section class="login-content">
+
+
+            <div class="login-box">
+
+
+                <h1 class="login-title">
+
+                    LOGIN
+
+                </h1>
+
+
+
+                <!-- LOGIN FORM -->
+
+                <form
+                    class="login-form"
+                    id="loginForm"
+                    autocomplete="off"
+                >
+
+
+                    <!-- USERNAME -->
+
+                    <div class="form-group">
+
+                        <label for="username">
+
+                            Username
+
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            placeholder="Enter username"
+                            autocomplete="off"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="form-group">
+
+                        <label for="password">
+
+                            Password
+
+                        </label>
+
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter password"
+                            autocomplete="new-password"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <!-- SUBMIT -->
+
+                    <button
+                        type="submit"
+                        class="submit-button"
+                        id="submitButton"
+                    >
+
+                        SUBMIT
+
+                    </button>
+
+
+                </form>
+
+
+
+                <!-- LOGIN MESSAGE IS SHOWN AS A TOP NOTIFICATION -->
+
+
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             HOME PAGE STYLE FOOTER
+        ================================================== -->
+
+        <footer class="site-footer">
+
+
+            <div class="footer-content">
+
+
+                <!-- SCHOOL IDENTITY -->
+
+                <div class="footer-school">
+
+
+                    <img
+                        src="vidya-bharati-logo.png"
+                        alt="Vidya Bharati Logo"
+                        class="footer-logo"
+                    >
+
+
+                    <div class="footer-school-info">
+
+
+                        <h2>
+
+                            LALA JAGDISH PRASAD SARASWATI
+                            VIDYA MANDIR SENIOR SECONDARY SCHOOL 
+
+                        </h2>
+
+
+                        <p class="footer-location">
+
+                            JANSATH ROAD, MUZAFFARNAGAR
+
+                        </p>
+
+
+                        <div class="footer-line"></div>
+
+
+                        <p class="footer-description">
+
+                            This site is a school books PDF library
+                            for classes 9 to 12.
+
+                        </p>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     FEATURE BOXES
+                ================================================== -->
+
+                <div class="footer-features">
+
+
+                    <!-- FAST & RELIABLE -->
+
+                    <div class="feature-card fast-card">
+
+
+                        <div class="feature-icon">
+
+                            ⚡
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+
+                                Fast &amp; Reliable
+
+                            </strong>
+
+
+                            <span>
+
+                                Instant results, no waiting
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- WORKS ON ALL DEVICES -->
+
+                    <div class="feature-card device-card">
+
+
+                        <div class="feature-icon">
+
+                            ▣
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+
+                                Works on All Devices
+
+                            </strong>
+
+
+                            <span>
+
+                                Mobile, Tablet &amp; Desktop
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- SAFE & SECURE -->
+
+                    <div class="feature-card safe-card">
+
+
+                        <div class="feature-icon">
+
+                            🛡
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+
+                                100% Safe &amp; Secure
+
+                            </strong>
+
+
+                            <span>
+
+                                Your data is always protected
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                     FOOTER BOTTOM
+                ================================================== -->
+
+                <div class="footer-bottom">
+
+
+                    <div class="copyright">
+
+                        © 2026 SCHOOL BOOKS LIBRARY
+
+                    </div>
+
+
+                    <div class="developer">
+
+                        &lt;/&gt;&nbsp;
+                        Developed by
+                        <strong>Shiva</strong>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+        </footer>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ===================================================== -->
+
+    <script>
+
+        "use strict";
+
+
+        /* =================================================
+           MENU
+        ================================================= */
+
+        const menuButton =
+            document.getElementById("menuButton");
+
+        const sideMenu =
+            document.getElementById("sideMenu");
+
+        const menuOverlay =
+            document.getElementById("menuOverlay");
+
+
+        function openMenu() {
+
+            sideMenu.classList.add("open");
+
+            menuOverlay.classList.add("active");
+
+            menuButton.setAttribute(
+                "aria-expanded",
+                "true"
+            );
+
+            menuOverlay.setAttribute(
+                "aria-hidden",
+                "false"
+            );
+
+            document.body.style.overflow =
+                "hidden";
+        }
+
+
+        function closeMenu() {
+
+            sideMenu.classList.remove("open");
+
+            menuOverlay.classList.remove("active");
+
+            menuButton.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+            menuOverlay.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+            document.body.style.overflow =
+                "";
+        }
+
+
+        menuButton.addEventListener(
+            "click",
+            function () {
+
+                if (
+                    sideMenu.classList.contains("open")
+                ) {
+
+                    closeMenu();
+
+                } else {
+
+                    openMenu();
+
+                }
+
+            }
+        );
+
+
+        menuOverlay.addEventListener(
+            "click",
+            closeMenu
+        );
+
+
+        /* =================================================
+           NORMAL SIDE MENU LINKS
+        ================================================= */
+
+        sideMenu
+            .querySelectorAll(
+                'a:not(#downloadedPDFsLink)'
+            )
+            .forEach(
+                function (link) {
+
+                    link.addEventListener(
+                        "click",
+                        closeMenu
+                    );
+
+                }
+            );
+
+
+        /* =================================================
+           DOWNLOADED PDFS
+        ================================================= */
+
+        const downloadedPDFsLink =
+            document.getElementById(
+                "downloadedPDFsLink"
+            );
+
+
+        downloadedPDFsLink.addEventListener(
+            "click",
+            function (event) {
+
+                event.preventDefault();
+
+                closeMenu();
+
+                showLoginMessage(
+                    "Downloaded PDFs feature coming soon.",
+                    "info"
+                );
+
+            }
+        );
+
+
+        /* =================================================
+           ESC KEY
+        ================================================= */
+
+        document.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (event.key === "Escape") {
+
+                    closeMenu();
+
+                }
+
+            }
+        );
+
+
+        /* =================================================
+           DARK MODE
+        ================================================= */
+
+        const themeToggle =
+            document.getElementById(
+                "themeToggle"
+            );
+
+
+        const THEME_KEY =
+            "schoolPdfLibraryTheme";
+
+
+        function applyTheme(theme) {
+
+            const dark =
+                theme === "dark";
+
+
+            document.body.classList.toggle(
+                "dark-mode",
+                dark
+            );
+
+
+            themeToggle.classList.toggle(
+                "active",
+                dark
+            );
+
+
+            themeToggle.setAttribute(
+                "aria-pressed",
+                String(dark)
+            );
+        }
+
+
+        let savedTheme = null;
+
+
+        try {
+
+            savedTheme =
+                localStorage.getItem(
+                    THEME_KEY
+                );
+
+        } catch (error) {
+
+            savedTheme = null;
+
+        }
+
+
+        if (
+            savedTheme === "dark" ||
+            savedTheme === "light"
+        ) {
+
+            applyTheme(savedTheme);
+
+        } else {
+
+            applyTheme("light");
+
+        }
+
+
+        themeToggle.addEventListener(
+            "click",
+            function () {
+
+                const isDark =
+                    document.body.classList.contains(
+                        "dark-mode"
+                    );
+
+
+                const newTheme =
+                    isDark
+                        ? "light"
+                        : "dark";
+
+
+                try {
+
+                    localStorage.setItem(
+                        THEME_KEY,
+                        newTheme
+                    );
+
+                } catch (error) {}
+
+
+                applyTheme(newTheme);
+
+            }
+        );
+
+
+        /* =================================================
+           LOGIN
+        ================================================= */
+
+        const loginForm =
+            document.getElementById(
+                "loginForm"
+            );
+        const loginMessage =
+            document.getElementById(
+                "loginMessage"
+            );
+
+
+        const submitButton =
+            document.getElementById(
+                "submitButton"
+            );
+        /* =================================================
+           SHOW LOGIN MESSAGE
+        ================================================= */
+
+        let loginMessageTimer = null;
+
+
+        function showLoginMessage(message, type = "info") {
+
+            if (loginMessageTimer) {
+
+                clearTimeout(loginMessageTimer);
+
+                loginMessageTimer = null;
+
+            }
+
+
+            loginMessage.className =
+                "login-message show " + type;
+
+
+            const icon =
+                type === "success"
+                    ? "✓"
+                    : "i";
+
+
+            loginMessage.innerHTML =
+                '<span class="message-icon">' +
+                icon +
+                '</span>' +
+                '<span class="message-text">' +
+                message +
+                '</span>' +
+                '<button type="button" class="message-close" aria-label="Close message">' +
+                '×' +
+                '</button>';
+
+
+            const closeButton =
+                loginMessage.querySelector(".message-close");
+
+
+            closeButton.addEventListener(
+                "click",
+                function () {
+
+                    hideLoginMessage();
+
+                }
+            );
+
+
+            loginMessageTimer =
+                setTimeout(
+                    hideLoginMessage,
+                    5000
+                );
+
+        }
+
+
+        function hideLoginMessage() {
+
+            loginMessage.classList.remove("show");
+
+            if (loginMessageTimer) {
+
+                clearTimeout(loginMessageTimer);
+
+                loginMessageTimer = null;
+
+            }
+
+        }
+
+
+        /* =================================================
+           LOGIN FORM SUBMIT
+        ================================================= */
+
+        loginForm.addEventListener(
+            "submit",
+            function (event) {
+
+                event.preventDefault();
+
+                /* -----------------------------------------
+                   READ FORM VALUES
+                ----------------------------------------- */
+
+                const username =
+                    document
+                        .getElementById("username")
+                        .value
+                        .trim();
+
+
+                const password =
+                    document
+                        .getElementById("password")
+                        .value;
+
+
+                /* -----------------------------------------
+                   BASIC VALIDATION
+                ----------------------------------------- */
+
+                if (
+                    username === "" ||
+                    password === ""
+                ) {
+
+                    showLoginMessage(
+                        "Please enter username and password.",
+                        "info"
+                    );
+
+                    return;
+
+                }
+
+
+                /* -----------------------------------------
+                   SUCCESS MESSAGE
+                ----------------------------------------- */
+
+                showLoginMessage(
+                    "Successfully Login",
+                    "success"
+                );
+
+
+                /* -----------------------------------------
+                   RESET FORM
+                ----------------------------------------- */
+
+                loginForm.reset();
+
+            }
+        );
+
+
+    </script>
+
+
+</body>
+
+</html>

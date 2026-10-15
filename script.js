@@ -66,7 +66,7 @@ let activeModal = null;
    DATA FUNCTIONS
 ========================================================= */
 
-const API_URL = "https://school-library-3yz6.onrender.com";
+const API_URL = "https://school-library-3yz6.onrender.com/api/library";
 
 async function loadData() {
     try {
